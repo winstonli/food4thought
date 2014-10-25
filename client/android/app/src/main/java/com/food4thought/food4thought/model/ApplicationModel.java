@@ -10,7 +10,18 @@ public class ApplicationModel {
     private SuggestedIngredients suggestedIngredients;
     private SuggestedRecipes suggestedRecipes;
 
+    public ApplicationModel() {
 
+        country = new Country();
+        mealType = MealType.BREAKFAST;
+        suggestedIngredients = new SuggestedIngredients();
+        suggestedRecipes = new SuggestedRecipes();
+
+    }
+
+    public void updateFromJSON() {
+
+    }
 
 
 
