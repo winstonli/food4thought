@@ -54,8 +54,23 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
 
     @Override
     public void update(PublishCode code, SuggestedIngredients publisher) {
+        int maxWidth = this.getWidth();
+        int currentWidth = 0;
+        LinearLayout currentLine = new LinearLayout(getContext());
+        addView(currentLine);
+        currentLine.setOrientation(LinearLayout.HORIZONTAL);
         for(Ingredient i: publisher.getIngredients()) {
             IngredientOptionView view = new IngredientOptionView(getContext(), i.getName(), i.getId());
+            int buttonWidth = view.getWidth();
+            if (maxWidth >= (currentWidth + buttonWidth)) {
+            } else {
+                currentLine = new LinearLayout(getContext());
+                addView(currentLine);
+                currentLine.setOrientation(LinearLayout.HORIZONTAL);
+                currentWidth = 0;
+            }
+            currentLine.addView(view);
+            currentWidth += buttonWidth;
 
             view.setOnClickListener(new OnClickListener() {
 
