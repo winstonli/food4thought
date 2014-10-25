@@ -1,5 +1,7 @@
 package com.food4thought.food4thought.model;
 
+import com.food4thought.food4thought.model.pubsub.Publisher;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,9 +10,12 @@ import java.util.List;
  */
 public class SuggestedRecipes {
 
+    public Publisher<SuggestedRecipes> publisher;
+
     private List<Recipe> recipes;
 
     public SuggestedRecipes() {
+        publisher = new Publisher<SuggestedRecipes>(this);
         recipes = new ArrayList<Recipe>();
     }
 

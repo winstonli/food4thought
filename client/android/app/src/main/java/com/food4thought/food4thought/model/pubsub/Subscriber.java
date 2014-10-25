@@ -1,4 +1,6 @@
-package com.food4thought.food4thought.model;
+package com.food4thought.food4thought.model.pubsub;
+
+import com.food4thought.food4thought.model.PublishCode;
 
 /**
  * Created by Roxy on 25/10/14.

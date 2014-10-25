@@ -1,4 +1,6 @@
-package com.food4thought.food4thought.model;
+package com.food4thought.food4thought.model.pubsub;
+
+import com.food4thought.food4thought.model.PublishCode;
 
 import java.util.ArrayList;
 import java.util.List;
