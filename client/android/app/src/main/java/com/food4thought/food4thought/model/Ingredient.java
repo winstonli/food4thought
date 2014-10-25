@@ -8,6 +8,20 @@ import com.food4thought.food4thought.model.pubsub.Publisher;
  */
 public class Ingredient implements JSONSource {
 
+    private static String[] names = {
+            "Alpaca Meat",
+            "Alpaca Feet",
+            "Alpaca Hands",
+            "Alpaca legs",
+            "Alpaca head",
+            "Alpaca eyes",
+            "Alpaca dick",
+            "Alpaca fingers",
+            "Alpaca hair",
+            "Alpaca nose",
+            "Alpaca mouth"
+    };
+
     public Publisher<Ingredient> publisher;
 
     private boolean selected;
@@ -22,8 +36,8 @@ public class Ingredient implements JSONSource {
 
     @Override
     public void updateFromJSON() {
-        id = 1;
-        name = "Fresh Alpaca Meat";
+        id = (int) (500 * Math.random());
+        name = names[(int) (names.length * Math.random())];
         publisher.publishWithCode(PublishCode.INGREDIENT_UPDATED);
     }
 

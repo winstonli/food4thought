@@ -11,6 +11,20 @@ import java.util.List;
  */
 public class Recipe implements JSONSource {
 
+    private static String[] names = {
+            "Fried alpaca Meat",
+            "Fried alpaca Feet",
+            "Fried alpaca Hands",
+            "Fried alpaca legs",
+            "Fried alpaca head",
+            "Fried alpaca eyes",
+            "Fried alpaca dick",
+            "Fried alpaca fingers",
+            "Fried alpaca hair",
+            "Fried alpaca nose",
+            "Fried alpaca mouth"
+    };
+
     public Publisher<Recipe> publisher;
 
     private boolean selected;
@@ -30,9 +44,9 @@ public class Recipe implements JSONSource {
 
     @Override
     public void updateFromJSON() {
-        name = "Slow Roasted Alpaca Meat";
+        name = names[(int) (names.length * Math.random())];
         ingredients.updateFromJSON();
-        description = "Put alpaca in poo";
+        description = "Put Fried alpaca in poo";
         publisher.publishWithCode(PublishCode.RECIPE_UPDATED);
     }
 

@@ -24,6 +24,14 @@ public class ApplicationModel implements JSONSource {
 
     }
 
+    public SuggestedIngredients getSuggestedIngredients() {
+        return suggestedIngredients;
+    }
+
+    public SuggestedRecipes getSuggestedRecipes() {
+        return suggestedRecipes;
+    }
+
     @Override
     public void updateFromJSON() {
         suggestedIngredients.updateFromJSON();
