@@ -1,6 +1,7 @@
 package com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.simplerecipe.ingredientnumber;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.widget.LinearLayout;
 
 /**
@@ -10,6 +11,7 @@ public class IngredientNumberView extends LinearLayout {
 
     public IngredientNumberView(Context context) {
         super(context);
+        setBackgroundColor(Color.BLACK);
     }
 
 }

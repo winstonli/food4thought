@@ -1,6 +1,7 @@
 package com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.friendlytext;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.widget.LinearLayout;
 
 /**
@@ -9,5 +10,6 @@ import android.widget.LinearLayout;
 public class FriendlyTextView extends LinearLayout {
     public FriendlyTextView(Context context) {
         super(context);
+        setBackgroundColor(Color.MAGENTA);
     }
 }

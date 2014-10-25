@@ -1,6 +1,7 @@
 package com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.ingredientoptions.ingredientoption;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.widget.LinearLayout;
 
 /**
@@ -10,6 +11,8 @@ public class IngredientOptionView extends LinearLayout {
 
     public IngredientOptionView(Context context) {
         super(context);
+        setBackgroundColor(Color.RED);
     }
+
 
 }

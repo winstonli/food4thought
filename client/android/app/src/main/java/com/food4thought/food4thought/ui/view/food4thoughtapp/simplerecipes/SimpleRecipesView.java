@@ -16,6 +16,15 @@ public class SimpleRecipesView extends LinearLayout {
     public SimpleRecipesView(Context context) {
         super(context);
         setBackgroundColor(Color.CYAN);
+
+        simpleRecipeView = new SimpleRecipeView(context);
+
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+        simpleRecipeView.setLayoutParams(new LayoutParams(right, (int) (1 * bottom)));
     }
 
 }

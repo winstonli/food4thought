@@ -1,6 +1,7 @@
 package com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.simplerecipe.simplerecipename;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.widget.LinearLayout;
 
 /**
@@ -10,6 +11,7 @@ public class SimpleRecipeNameView extends LinearLayout {
 
     public SimpleRecipeNameView(Context context) {
         super(context);
+        setBackgroundColor(Color.BLUE);
     }
 
 }

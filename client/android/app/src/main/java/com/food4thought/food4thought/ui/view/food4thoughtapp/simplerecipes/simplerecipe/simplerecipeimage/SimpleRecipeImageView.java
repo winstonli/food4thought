@@ -1,6 +1,7 @@
 package com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.simplerecipe.simplerecipeimage;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.widget.LinearLayout;
 
 /**
@@ -9,5 +10,6 @@ import android.widget.LinearLayout;
 public class SimpleRecipeImageView extends LinearLayout {
     public SimpleRecipeImageView(Context context) {
         super(context);
+        setBackgroundColor(Color.DKGRAY);
     }
 }
