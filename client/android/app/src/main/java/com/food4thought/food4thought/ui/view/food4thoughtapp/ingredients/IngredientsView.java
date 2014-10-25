@@ -19,7 +19,7 @@ public class IngredientsView extends LinearLayout {
 
     public IngredientsView(Context context) {
         super(context);
-        setBackgroundColor(Color.BLUE);
+        setBackgroundColor(Color.RED);
 
         friendlyTextView = new FriendlyTextView(context);
         addView(friendlyTextView);
