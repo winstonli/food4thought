@@ -44,4 +44,6 @@ public class Ingredient implements JSONSource {
     public String getName() {
         return name;
     }
+
+    public int getId() {return id; }
 }

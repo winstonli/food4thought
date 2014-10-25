@@ -4,9 +4,12 @@ import android.content.Context;
 import android.content.pm.LabeledIntent;
 import android.graphics.Color;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import com.food4thought.food4thought.model.ApplicationModel;
 import com.food4thought.food4thought.model.Ingredient;
@@ -24,7 +27,8 @@ import java.util.ArrayList;
 public class IngredientOptionsView extends LinearLayout implements Subscriber<SuggestedIngredients> {
 
     private IngredientOptionView ingredientOptionView;
-    private ArrayList<IngredientOptionView> options = new ArrayList<IngredientOptionView>();
+    //private ArrayList<IngredientOptionView> options = new ArrayList<IngredientOptionView>();
+
 
     ScrollView scrollView;
     LinearLayout scrollViewInner;
@@ -41,10 +45,6 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
         scrollView.addView(scrollViewInner);
         scrollView.setScrollContainer(false);
 
-        for(IngredientOptionView i : options) {
-            scrollViewInner.addView(i);
-        }
-
     }
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
@@ -54,12 +54,17 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
 
     @Override
     public void update(PublishCode code, SuggestedIngredients publisher) {
-        for (Ingredient ingredient : publisher.getIngredients()) {
-            Log.wtf("miaow", ingredient.getName());
-        }
         for(Ingredient i: publisher.getIngredients()) {
-            IngredientOptionView view = new IngredientOptionView(getContext(), i.getName());
-            options.add(view);
+            IngredientOptionView view = new IngredientOptionView(getContext(), i.getName(), i.getId());
+
+            view.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(getContext(), ((IngredientOptionView) view).getFudName(), Toast.LENGTH_LONG).show();
+                }
+            });
+            //options.add(view);
             scrollViewInner.addView(view);
         }
     }

@@ -13,7 +13,7 @@ import com.food4thought.food4thought.R;
 public class SimpleRecipeImageView extends ImageView {
     public SimpleRecipeImageView(Context context) {
         super(context);
-        setBackgroundColor(Color.DKGRAY);
+        setBackgroundColor(Color.RED);
         setImageDrawable(getResources().getDrawable(R.drawable.base));
     }
 }

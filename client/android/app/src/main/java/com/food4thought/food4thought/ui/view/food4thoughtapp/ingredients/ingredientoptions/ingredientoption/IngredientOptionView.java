@@ -12,18 +12,29 @@ import android.widget.TextView;
  */
 public class IngredientOptionView extends Button {
 
-    public IngredientOptionView(Context context) {
+    //public static final int FUD_ID = 1;
+
+    private final int fudId;
+
+   /* public IngredientOptionView(Context context) {
         super(context);
         setBackgroundColor(Color.BLUE);
-    }
+    }*/
 
 
-    public IngredientOptionView(Context context, String fudName) {
+    public IngredientOptionView(Context context, String fudName, int fudId) {
         super(context);
         setText(fudName);
-        //setBackgroundColor(Color.RED);
+        this.fudId = fudId;
         setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+    }
 
+    public int getFudId(){
+        return fudId;
+    }
+
+    public String getFudName() {
+        return getText().toString();
     }
 
 }

@@ -2,8 +2,14 @@ package com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.simp
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.food4thought.food4thought.R;
@@ -15,62 +21,50 @@ import com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.simpl
 /**
  * Created by Roxy on 25/10/14.
  */
-public class SimpleRecipeView extends LinearLayout {
+public class SimpleRecipeView extends RelativeLayout {
 
-    private SimpleRecipeImageView simpleRecipeImageView;
+    private ImageView simpleRecipeImageView;
     private TimeIndicatorView timeIndicatorView;
     private IngredientNumberView ingredientNumberView;
     private SimpleRecipeNameView simpleRecipeNameView;
 
-    private LinearLayout imgView;
-    private LinearLayout textView;
 
-    public SimpleRecipeView(Context context) {
+    //private LinearLayout containerView;
+   // private ImageView imgView;
+
+    //private LinearLayout imgView;
+    //private LinearLayout textView;
+
+    public SimpleRecipeView(Context context, Drawable img) {
         super(context);
-        setOrientation(LinearLayout.VERTICAL);
-        setBackgroundColor(Color.BLACK);
+        //setOrientation(LinearLayout.VERTICAL);
+        setPadding(10, 10, 10, 10);
 
-        imgView = new LinearLayout(context);
-        imgView.setBackgroundColor(Color.MAGENTA);
-        textView = new LinearLayout(context);
-        textView.setBackgroundColor(Color.YELLOW);
-        addView(imgView);
-        addView(textView);
-
-        imgView.addView(new SimpleRecipeImageView(context));
-TextView bob = new TextView(context);
-        bob.setText("Steamed Alpaca Buns");
-    textView.addView(bob);
-     /*   imgView = new LinearLayout(context);
-        imgView.setOrientation(LinearLayout.HORIZONTAL);
-        imgView.setBackgroundColor(Color.BLUE);
-        addView(imgView);
-        textView = new LinearLayout(context);
-        textView.setOrientation(LinearLayout.HORIZONTAL);
-
-        //addView(textView);
-
-        //simpleRecipeImageView = new SimpleRecipeImageView(context);
-        //imgView.addView(simpleRecipeImageView);
-        timeIndicatorView = new TimeIndicatorView(context);
-  /*      ingredientNumberView = new IngredientNumberView(context);
+        setClickable(true);
+        setGravity(Gravity.CENTER);
         simpleRecipeNameView = new SimpleRecipeNameView(context);
-        tv = new TextView(context);
-        tv.setText("Slow Roasted Alpaca Steak Lasagna Fried Rice");
-        addView(tv);
-*/
+        simpleRecipeNameView.setText("Steamed Alpaca Buns");
+
+        simpleRecipeImageView = new ImageView(context);
+        //simpleRecipeImageView.setBackgroundColor(Color.CYAN);
+        //simpleRecipeImageView.setText("Hi");
+        simpleRecipeImageView.setImageDrawable(img);
+        simpleRecipeImageView.setBackgroundColor(Color.BLACK);
+        addView(simpleRecipeImageView);
+        addView(simpleRecipeNameView);
+        //setBackground(getResources().getDrawable(R.drawable.base));
+        //setText("Fried Alpaca Dumplings");
+
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        imgView.setLayoutParams(new LayoutParams(right, (int) (0.70 * bottom)));
-        textView.setLayoutParams(new LayoutParams(right, (int) (0.30 * bottom)));
+        Log.wtf("wut", left + " " + top + " " + right + " " + bottom);
+        //containerView.setLayoutParams(new ViewGroup.LayoutParams(right, bottom));
+        simpleRecipeImageView.setLayoutParams(new LayoutParams(right, (int) (0.80 * bottom)));
+        simpleRecipeNameView.setLayoutParams(new LayoutParams(right, (int) (0.20 * bottom)));
 
-        /*simpleRecipeImageView.setLayoutParams(new LayoutParams(right, (int) (0.20 * bottom)));
-        timeIndicatorView.setLayoutParams(new LayoutParams(right, (int) (0.30 * bottom)));
-        ingredientNumberView.setLayoutParams(new LayoutParams(right, (int) (0.20 * bottom)));
-        simpleRecipeNameView.setLayoutParams(new LayoutParams(right, (int) (0.30 * bottom)));*/
     }
 
 }
