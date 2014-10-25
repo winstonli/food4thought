@@ -24,12 +24,23 @@ public class SimpleRecipeView extends LinearLayout {
 
     private LinearLayout imgView;
     private LinearLayout textView;
-TextView tv;
+
     public SimpleRecipeView(Context context) {
         super(context);
         setOrientation(LinearLayout.VERTICAL);
         setBackgroundColor(Color.BLACK);
 
+        imgView = new LinearLayout(context);
+        imgView.setBackgroundColor(Color.MAGENTA);
+        textView = new LinearLayout(context);
+        textView.setBackgroundColor(Color.YELLOW);
+        addView(imgView);
+        addView(textView);
+
+        imgView.addView(new SimpleRecipeImageView(context));
+TextView bob = new TextView(context);
+        bob.setText("Steamed Alpaca Buns");
+    textView.addView(bob);
      /*   imgView = new LinearLayout(context);
         imgView.setOrientation(LinearLayout.HORIZONTAL);
         imgView.setBackgroundColor(Color.BLUE);
@@ -53,9 +64,9 @@ TextView tv;
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-      /*  imgView.setLayoutParams(new LayoutParams(right, (int) (0.70 * bottom)));
-        tv.setLayoutParams(new LayoutParams(right, (int) (0.30 * bottom)));
-*/
+        imgView.setLayoutParams(new LayoutParams(right, (int) (0.70 * bottom)));
+        textView.setLayoutParams(new LayoutParams(right, (int) (0.30 * bottom)));
+
         /*simpleRecipeImageView.setLayoutParams(new LayoutParams(right, (int) (0.20 * bottom)));
         timeIndicatorView.setLayoutParams(new LayoutParams(right, (int) (0.30 * bottom)));
         ingredientNumberView.setLayoutParams(new LayoutParams(right, (int) (0.20 * bottom)));

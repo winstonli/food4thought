@@ -18,68 +18,35 @@ import java.util.ArrayList;
  */
 public class SimpleRecipesView extends LinearLayout {
 
-    private SimpleRecipeView simpleRecipeView;
-    private HorizontalScrollView scrollView;
-    private LinearLayout recipeList;
-
     private int recipeSize = 0;
+
+    private SimpleRecipeView s1;
+    private SimpleRecipeView s2;
 
     private ArrayList<SimpleRecipeView> recipes = new ArrayList<SimpleRecipeView>();
 
     public SimpleRecipesView(Context context) {
         super(context);
-        setOrientation(LinearLayout.VERTICAL);
+        setOrientation(LinearLayout.HORIZONTAL);
 
         setBackgroundColor(Color.YELLOW);
 
-        scrollView = new HorizontalScrollView(context);
-        addView(scrollView);
-        scrollView.setBackgroundColor(Color.LTGRAY);
-        recipeList = new LinearLayout(context);
-        recipeList.setOrientation(LinearLayout.HORIZONTAL);
-        recipeList.setBackgroundColor(Color.MAGENTA);
-        scrollView.addView(recipeList);
+        s1 = new SimpleRecipeView(context);
+        s2 = new SimpleRecipeView(context);
 
-
-
-        setRecipes();
-
+        addView(s1);
+        addView(s2);
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
 
-        scrollView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        recipeSize = (int) (bottom * 0.5);
-        setRecipeSizes();
-     // re
-        //recipeList.set
-    }
-
-    protected void setRecipes(){
-        recipes.add(new SimpleRecipeView(getContext()));
-        recipes.add(new SimpleRecipeView(getContext()));
-        recipes.add(new SimpleRecipeView(getContext()));
-        recipes.add(new SimpleRecipeView(getContext()));
-        recipes.add(new SimpleRecipeView(getContext()));
-        recipes.add(new SimpleRecipeView(getContext()));
-        recipes.add(new SimpleRecipeView(getContext()));
-        recipes.add(new SimpleRecipeView(getContext()));
-
-        for (SimpleRecipeView s : recipes) {
-            recipeList.addView(s);
-            // s.setLayoutParams(new LayoutParams(recipeSize, recipeSize));
-        }
+        s1.setLayoutParams(new LayoutParams((int) (right * 0.5), ViewGroup.LayoutParams.MATCH_PARENT));
+        s2.setLayoutParams(new LayoutParams((int) (right * 0.5), ViewGroup.LayoutParams.MATCH_PARENT));
 
     }
 
-    protected void setRecipeSizes() {
-        for (SimpleRecipeView s : recipes) {
-           // recipeList.addView(s);
-            s.setLayoutParams(new LayoutParams(recipeSize, recipeSize));
-        }
-    }
 
 
 
