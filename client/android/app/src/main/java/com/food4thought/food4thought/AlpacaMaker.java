@@ -1,4 +1,4 @@
-package alpacamaker;
+package com.food4thought.food4thought;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
@@ -6,10 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
-
-
-
-import alpacamaker.ui.AlpacaMakerAppView;
 
 
 public class AlpacaMaker extends Activity {

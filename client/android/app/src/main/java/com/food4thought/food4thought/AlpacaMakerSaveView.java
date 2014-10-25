@@ -1,4 +1,4 @@
-package alpacamaker.ui;
+package com.food4thought.food4thought;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -6,15 +6,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import alpacamaker.R;
-
 /**
  * Created by Nicole on 30/08/2014.
  */
-public class AlpacaMakerRandomView extends LinearLayout {
+public class AlpacaMakerSaveView extends LinearLayout {
 
-
-    private AlpacaMakerRandomViewDelegate delegate;
+    private AlpacaMakerSaveViewDelegate delegate;
 
     private static final int[] themeIds = {
 
@@ -25,42 +22,39 @@ public class AlpacaMakerRandomView extends LinearLayout {
     private Drawable[] theme;
     private int themeIndex = 0;
 
-    public AlpacaMakerRandomView(Context context) {
+    public AlpacaMakerSaveView(Context context) {
         super(context);
         setOrientation(LinearLayout.VERTICAL);
         loadTheme();
         setBackground(theme[themeIndex]);
 
-        Button randomButton = new Button(context);
-        randomButton.setText("Randomise");
-        addView(randomButton);
-
-        randomButton.setOnClickListener(new OnClickListener() {
+        Button saveToGalleryButton = new Button(context);
+        saveToGalleryButton.setText("Save to Gallery");
+        saveToGalleryButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (delegate != null) {
-                    delegate.randomButtonPressed();
+                    delegate.saveToGalleryButtonPressed();
                 }
             }
         });
+        addView(saveToGalleryButton);
 
-        final Button themeButton = new Button(context);
-        themeButton.setText("Theme" + " (" + getThemeIndex() + "/" + themeIds.length + ")");
-        addView(themeButton);
-
-        themeButton.setOnClickListener(new OnClickListener() {
+        Button sendToEmailButton = new Button(context);
+        sendToEmailButton.setText("Send to Email");
+        sendToEmailButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (delegate != null) {
-                    delegate.themeButtonPressed();
-                    themeButton.setText("Theme" + " (" + getThemeIndex() + "/" + themeIds.length + ")");
+                    delegate.sendToEmailButtonPressed();
                 }
             }
         });
+        addView(sendToEmailButton);
 
     }
 
-    public void setDelegate(AlpacaMakerRandomViewDelegate delegate) {
+    public void setDelegate(AlpacaMakerSaveViewDelegate delegate) {
         this.delegate = delegate;
     }
 
@@ -78,9 +72,5 @@ public class AlpacaMakerRandomView extends LinearLayout {
         themeIndex %= themeIds.length;
         setBackground(theme[themeIndex]);
 
-    }
-
-    public int getThemeIndex() {
-        return (themeIndex + 1);
     }
 }

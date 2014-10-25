@@ -1,4 +1,4 @@
-package alpacamaker.ui;
+package com.food4thought.food4thought;
 
 /**
  * Created by Nicole on 30/08/2014.

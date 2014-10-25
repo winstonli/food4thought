@@ -1,4 +1,4 @@
-package alpacamaker;
+package com.food4thought.food4thought;
 
 
 import android.content.res.Resources;

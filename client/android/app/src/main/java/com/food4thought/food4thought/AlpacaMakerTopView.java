@@ -1,10 +1,8 @@
-package alpacamaker.ui;
+package com.food4thought.food4thought;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.widget.LinearLayout;
-
-import alpacamaker.R;
 
 /**
  * Created by Nicole on 29/08/2014.

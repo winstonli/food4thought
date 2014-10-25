@@ -1,4 +1,4 @@
-package alpacamaker.ui;
+package com.food4thought.food4thought;
 
 import android.content.Context;
 import android.widget.LinearLayout;

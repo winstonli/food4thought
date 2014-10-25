@@ -1,4 +1,4 @@
-package alpacamaker.ui;
+package com.food4thought.food4thought;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -13,8 +13,6 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Date;
-
-import alpacamaker.Alpaca;
 
 /**
  * Created by Nicole on 29/08/2014.
