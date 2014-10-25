@@ -15,7 +15,7 @@ public class Ingredient implements JSONSource {
             "Alpaca legs",
             "Alpaca head",
             "Alpaca eyes",
-            "Alpaca dick",
+            "Alpaca pick",
             "Alpaca fingers",
             "Alpaca hair",
             "Alpaca nose",

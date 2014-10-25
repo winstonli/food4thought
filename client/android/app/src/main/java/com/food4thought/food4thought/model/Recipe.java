@@ -18,7 +18,7 @@ public class Recipe implements JSONSource {
             "Fried alpaca legs",
             "Fried alpaca head",
             "Fried alpaca eyes",
-            "Fried alpaca dick",
+            "Fried alpaca pick",
             "Fried alpaca fingers",
             "Fried alpaca hair",
             "Fried alpaca nose",
