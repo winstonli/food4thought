@@ -25,9 +25,13 @@ public class RecipeView extends LinearLayout {
         setBackgroundColor(Color.MAGENTA);
 
         recipeImageView = new RecipeImageView(context);
+        addView(recipeImageView);
         timeView = new TimeView(context);
+        addView(timeView);
         recipeIngredientsView = new RecipeIngredientsView(context);
+        addView(recipeIngredientsView);
         recipeInstructionsView = new RecipeInstructionsView(context);
+        addView(recipeInstructionsView);
     }
 
     @Override

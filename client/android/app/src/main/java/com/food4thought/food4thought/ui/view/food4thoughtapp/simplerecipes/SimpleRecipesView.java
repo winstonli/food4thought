@@ -18,6 +18,7 @@ public class SimpleRecipesView extends LinearLayout {
         setBackgroundColor(Color.CYAN);
 
         simpleRecipeView = new SimpleRecipeView(context);
+        addView(simpleRecipeView);
 
     }
 

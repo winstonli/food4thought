@@ -22,8 +22,11 @@ public class IngredientsView extends LinearLayout {
         setBackgroundColor(Color.BLUE);
 
         friendlyTextView = new FriendlyTextView(context);
+        addView(friendlyTextView);
         ingredientSearchView = new IngredientSearchView(context);
+        addView(ingredientSearchView);
         ingredientOptionsView = new IngredientOptionsView(context);
+        addView(ingredientOptionsView);
     }
 
     @Override

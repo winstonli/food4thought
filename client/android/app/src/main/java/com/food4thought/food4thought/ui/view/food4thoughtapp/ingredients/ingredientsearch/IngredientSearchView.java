@@ -20,8 +20,9 @@ public class IngredientSearchView extends LinearLayout {
         setBackgroundColor(Color.YELLOW);
 
         ingredientSearchInputView = new IngredientSearchInputView(context);
+        addView(ingredientSearchInputView);
         ingredientSearchButtonView = new IngredientSearchButtonView(context);
-
+        addView(ingredientSearchButtonView);
     }
 
     @Override

@@ -18,6 +18,7 @@ public class IngredientOptionsView extends LinearLayout {
         setBackgroundColor(Color.GRAY);
 
         ingredientOptionView = new IngredientOptionView(context);
+        addView(ingredientOptionView);
     }
 
     @Override

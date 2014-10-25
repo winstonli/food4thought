@@ -19,6 +19,7 @@ public class RecipeIngredientsView extends LinearLayout {
         setBackgroundColor(Color.DKGRAY);
 
         recipeIngredientView = new RecipeIngredientView(context);
+        addView(recipeIngredientView);
     }
 
 
