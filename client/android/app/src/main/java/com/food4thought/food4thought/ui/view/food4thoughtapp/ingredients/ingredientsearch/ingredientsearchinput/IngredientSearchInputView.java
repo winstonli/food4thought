@@ -13,8 +13,7 @@ public class IngredientSearchInputView extends EditText {
     public IngredientSearchInputView(Context context) {
         super(context);
         setBackgroundColor(Color.BLUE);
-
-
+        setText("Add ingredient");
     }
 
 }

@@ -12,7 +12,7 @@ public class IngredientSearchButtonView extends Button {
 
     public IngredientSearchButtonView(Context context) {
         super(context);
-        setBackgroundColor(Color.DKGRAY);
+        //setBackgroundColor(Color.DKGRAY);
         setText("Search");
     }
 

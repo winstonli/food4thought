@@ -18,7 +18,7 @@ public class Food4ThoughtAppView extends LinearLayout {
     public Food4ThoughtAppView(Context context) {
         super(context);
         setOrientation(LinearLayout.VERTICAL);
-        setBackgroundColor(Color.RED);
+        setBackgroundColor(Color.BLUE);
 
         ingredientsView = new IngredientsView(context);
         addView(ingredientsView);

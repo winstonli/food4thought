@@ -13,9 +13,11 @@ public class IngredientOptionsView extends LinearLayout {
 
     private IngredientOptionView ingredientOptionView;
 
+
+
     public IngredientOptionsView(Context context) {
         super(context);
-        setBackgroundColor(Color.GRAY);
+        setBackgroundColor(Color.LTGRAY);
 
         ingredientOptionView = new IngredientOptionView(context);
         addView(ingredientOptionView);

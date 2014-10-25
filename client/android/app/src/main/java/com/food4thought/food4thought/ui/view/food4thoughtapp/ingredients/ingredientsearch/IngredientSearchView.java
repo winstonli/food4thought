@@ -17,7 +17,8 @@ public class IngredientSearchView extends LinearLayout {
 
     public IngredientSearchView(Context context) {
         super(context);
-        setBackgroundColor(Color.YELLOW);
+        setOrientation(LinearLayout.HORIZONTAL);
+        setBackgroundColor(Color.DKGRAY);
 
         ingredientSearchInputView = new IngredientSearchInputView(context);
         addView(ingredientSearchInputView);
@@ -28,8 +29,8 @@ public class IngredientSearchView extends LinearLayout {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        ingredientSearchInputView.setLayoutParams(new LayoutParams(right, (int) (0.30 * bottom)));
-        ingredientSearchButtonView.setLayoutParams(new LayoutParams(right, (int) (0.70 * bottom)));
+        ingredientSearchInputView.setLayoutParams(new LayoutParams((int) (right * 0.70), bottom));
+        ingredientSearchButtonView.setLayoutParams(new LayoutParams((int) (right * 0.30), bottom));
     }
 
 }
