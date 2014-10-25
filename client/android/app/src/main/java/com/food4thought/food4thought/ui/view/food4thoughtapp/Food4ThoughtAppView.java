@@ -29,6 +29,7 @@ public class Food4ThoughtAppView extends LinearLayout {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
+        ingredientsView.setLayoutParams(new LayoutParams(right, (int) (0.70 * bottom)));
         simpleRecipesView.setLayoutParams(new LayoutParams(right, (int) (0.30 * bottom)));
 
     }

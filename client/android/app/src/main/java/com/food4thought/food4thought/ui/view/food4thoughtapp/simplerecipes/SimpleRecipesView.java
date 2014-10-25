@@ -2,6 +2,7 @@ package com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
@@ -21,6 +22,8 @@ public class SimpleRecipesView extends LinearLayout {
     private HorizontalScrollView scrollView;
     private LinearLayout recipeList;
 
+    private int recipeSize = 0;
+
     private ArrayList<SimpleRecipeView> recipes = new ArrayList<SimpleRecipeView>();
 
     public SimpleRecipesView(Context context) {
@@ -28,25 +31,18 @@ public class SimpleRecipesView extends LinearLayout {
         setOrientation(LinearLayout.VERTICAL);
 
         setBackgroundColor(Color.YELLOW);
-        recipes.add(new SimpleRecipeView(context));
-        recipes.add(new SimpleRecipeView(context));
 
         scrollView = new HorizontalScrollView(context);
         addView(scrollView);
-        scrollView.setBackgroundColor(Color.BLUE);
+        scrollView.setBackgroundColor(Color.LTGRAY);
         recipeList = new LinearLayout(context);
         recipeList.setOrientation(LinearLayout.HORIZONTAL);
-
-
-      // recipeList.addView(simpleRecipeView);
-
+        recipeList.setBackgroundColor(Color.MAGENTA);
         scrollView.addView(recipeList);
 
-    for (SimpleRecipeView s : recipes) {
-        recipeList.addView(s);
-        //s.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-    }
 
+
+        setRecipes();
 
     }
 
@@ -55,8 +51,39 @@ public class SimpleRecipesView extends LinearLayout {
         super.onLayout(changed, left, top, right, bottom);
 
         scrollView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        //recipeList.setLayoutParams(new ViewGroup.LayoutParams(right, bottom));
-       // recipeList.setLayoutParams(new LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+        recipeSize = (int) (bottom * 0.5);
+        setRecipeSizes();
+     // re
+        //recipeList.set
     }
+
+    protected void setRecipes(){
+        recipes.add(new SimpleRecipeView(getContext()));
+        recipes.add(new SimpleRecipeView(getContext()));
+        recipes.add(new SimpleRecipeView(getContext()));
+        recipes.add(new SimpleRecipeView(getContext()));
+        recipes.add(new SimpleRecipeView(getContext()));
+        recipes.add(new SimpleRecipeView(getContext()));
+        recipes.add(new SimpleRecipeView(getContext()));
+        recipes.add(new SimpleRecipeView(getContext()));
+
+        for (SimpleRecipeView s : recipes) {
+            recipeList.addView(s);
+            // s.setLayoutParams(new LayoutParams(recipeSize, recipeSize));
+        }
+
+    }
+
+    protected void setRecipeSizes() {
+        for (SimpleRecipeView s : recipes) {
+           // recipeList.addView(s);
+            s.setLayoutParams(new LayoutParams(recipeSize, recipeSize));
+        }
+    }
+
+
+
+
+
 
 }
