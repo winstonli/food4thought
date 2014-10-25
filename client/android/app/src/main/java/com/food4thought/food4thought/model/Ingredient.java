@@ -36,8 +36,6 @@ public class Ingredient implements JSONSource {
 
     @Override
     public void updateFromJSON() {
-        System.exit(0);
-
         id = (int) (500 * Math.random());
         name = names[(int) (names.length * Math.random())];
         publisher.publishWithCode(PublishCode.INGREDIENT_UPDATED);

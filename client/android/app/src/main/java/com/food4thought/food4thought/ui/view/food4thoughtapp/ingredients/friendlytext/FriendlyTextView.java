@@ -14,6 +14,7 @@ public class FriendlyTextView extends TextView{
     public FriendlyTextView(Context context) {
         super(context);
         setBackgroundColor(Color.MAGENTA);
+        setTextAlignment(TEXT_ALIGNMENT_CENTER);
         setText(text);
     }
 }

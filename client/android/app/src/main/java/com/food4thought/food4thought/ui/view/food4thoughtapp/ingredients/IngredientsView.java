@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.widget.LinearLayout;
 
+import com.food4thought.food4thought.model.ApplicationModel;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.friendlytext.FriendlyTextView;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.ingredientoptions.IngredientOptionsView;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.ingredientsearch.IngredientSearchView;
@@ -28,6 +29,7 @@ public class IngredientsView extends LinearLayout {
         addView(ingredientSearchView);
         ingredientOptionsView = new IngredientOptionsView(context);
         addView(ingredientOptionsView);
+        ApplicationModel.mainModel.getSuggestedIngredients().publisher.subscribe(ingredientOptionsView);
     }
 
     @Override

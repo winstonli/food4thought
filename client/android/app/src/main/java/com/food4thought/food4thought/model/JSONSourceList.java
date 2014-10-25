@@ -8,15 +8,9 @@ import java.util.List;
  */
 public class JSONSourceList<T extends JSONSource> extends ArrayList<T> implements JSONSource {
 
-    private List<T> internalList;
-
-    public JSONSourceList() {
-        internalList = new ArrayList<T>();
-    }
-
     @Override
     public void updateFromJSON() {
-        for (T t : internalList) {
+        for (T t : this) {
             t.updateFromJSON();
         }
     }
