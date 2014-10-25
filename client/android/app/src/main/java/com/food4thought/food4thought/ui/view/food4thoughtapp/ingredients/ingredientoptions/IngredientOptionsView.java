@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.pm.LabeledIntent;
 import android.graphics.Color;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -20,6 +21,7 @@ import com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.friendl
 import com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.ingredientoptions.ingredientoption.IngredientOptionView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by Roxy on 25/10/14.
@@ -54,23 +56,29 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
 
     @Override
     public void update(PublishCode code, SuggestedIngredients publisher) {
-        int maxWidth = this.getWidth();
+
+        int maxWidth = getContext().getResources().getDisplayMetrics().widthPixels;
+        //Log.wtf("Something", "display: " + Integer.toString(maxWidth));
         int currentWidth = 0;
         LinearLayout currentLine = new LinearLayout(getContext());
-        addView(currentLine);
+        scrollViewInner.addView(currentLine);
         currentLine.setOrientation(LinearLayout.HORIZONTAL);
+        currentLine.setGravity(Gravity.CENTER);
+        int noOfThings = 0;
+
         for(Ingredient i: publisher.getIngredients()) {
             IngredientOptionView view = new IngredientOptionView(getContext(), i.getName(), i.getId());
-            int buttonWidth = view.getWidth();
-            if (maxWidth >= (currentWidth + buttonWidth)) {
-            } else {
-                currentLine = new LinearLayout(getContext());
-                addView(currentLine);
-                currentLine.setOrientation(LinearLayout.HORIZONTAL);
-                currentWidth = 0;
-            }
             currentLine.addView(view);
-            currentWidth += buttonWidth;
+            LinearLayout.LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f * i.getName().length());
+            view.setLayoutParams(lp);
+            noOfThings++;
+            if (noOfThings == 3 ) {
+                noOfThings = 0;
+                currentLine = new LinearLayout(getContext());
+                scrollViewInner.addView(currentLine);
+                currentLine.setOrientation(LinearLayout.HORIZONTAL);
+                currentLine.setGravity(Gravity.CENTER);
+            }
 
             view.setOnClickListener(new OnClickListener() {
 
@@ -80,7 +88,17 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
                 }
             });
             //options.add(view);
-            scrollViewInner.addView(view);
+            //scrollViewInner.addView(view);
+        }
+        if (noOfThings == 0) {
+            return;
+        }
+        for (int i = 0; i < 3 - noOfThings; i++) {
+            LinearLayout.LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f * (8 + new Random().nextInt(20)));
+            View v = new Button(getContext());
+            currentLine.addView(v);
+            v.setVisibility(INVISIBLE);
+            v.setLayoutParams(lp);
         }
     }
 }

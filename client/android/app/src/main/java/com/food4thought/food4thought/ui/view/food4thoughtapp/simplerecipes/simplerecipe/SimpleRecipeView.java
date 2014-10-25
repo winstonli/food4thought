@@ -60,7 +60,7 @@ public class SimpleRecipeView extends RelativeLayout {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        Log.wtf("wut", left + " " + top + " " + right + " " + bottom);
+        //Log.wtf("wut", left + " " + top + " " + right + " " + bottom);
         //containerView.setLayoutParams(new ViewGroup.LayoutParams(right, bottom));
         simpleRecipeImageView.setLayoutParams(new LayoutParams(right, (int) (0.80 * bottom)));
         simpleRecipeNameView.setLayoutParams(new LayoutParams(right, (int) (0.20 * bottom)));
