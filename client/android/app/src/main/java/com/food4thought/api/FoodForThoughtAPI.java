@@ -13,7 +13,8 @@ public class FoodForThoughtAPI {
   public static void getState(FFTHandler currentState, 
                        List<Integer> ingredientIds,
                        String meal_type,
-                       String cuisine_type) {
+                       String cuisine_type,
+                       String search) {
     final FFTHandler state = currentState;
     
     List<HashMap<String,Integer>> listOfIdMappings = new LinkedList<>();
@@ -26,6 +27,7 @@ public class FoodForThoughtAPI {
     map.put("selected_ingredients", listOfIdMappings);
     map.put("meal_type", meal_type);
     map.put("cuisine_type", cuisine_type);
+    map.put("search", search);
     Gson gson = new Gson();
     //Creates string in JSON form for query
     final String jsonString = gson.toJson(map);
@@ -53,5 +55,4 @@ public class FoodForThoughtAPI {
     
   }
   
-  //api call for search
 }
