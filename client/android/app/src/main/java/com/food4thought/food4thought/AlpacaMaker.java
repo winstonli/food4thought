@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 
+import com.food4thought.food4thought.ui.AlpacaMakerAppView;
+
 
 public class AlpacaMaker extends Activity {
 
