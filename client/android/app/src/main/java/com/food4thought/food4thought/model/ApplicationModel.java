@@ -8,6 +8,8 @@ import com.food4thought.food4thought.model.pubsub.Publisher;
  */
 public class ApplicationModel implements JSONSource {
 
+    public static ApplicationModel mainModel = new ApplicationModel();
+
     public Publisher<ApplicationModel> publisher;
 
     private CuisineType cuisineType;

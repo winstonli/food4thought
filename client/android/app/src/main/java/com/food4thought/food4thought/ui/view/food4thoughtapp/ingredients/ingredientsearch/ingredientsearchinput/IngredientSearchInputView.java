@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 
 /**
  * Created by Roxy on 25/10/14.

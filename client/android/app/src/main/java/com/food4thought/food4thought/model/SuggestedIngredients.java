@@ -27,6 +27,10 @@ public class SuggestedIngredients implements JSONSource {
         ingredients.add(new Ingredient());
     }
 
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
     @Override
     public void updateFromJSON() {
         ingredients.updateFromJSON();

@@ -2,8 +2,11 @@ package com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.simp
 
 import android.content.Context;
 import android.graphics.Color;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.food4thought.food4thought.R;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.simplerecipe.ingredientnumber.IngredientNumberView;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.simplerecipe.simplerecipeimage.SimpleRecipeImageView;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.simplerecipe.simplerecipename.SimpleRecipeNameView;
@@ -19,24 +22,44 @@ public class SimpleRecipeView extends LinearLayout {
     private IngredientNumberView ingredientNumberView;
     private SimpleRecipeNameView simpleRecipeNameView;
 
+    private LinearLayout imgView;
+    private LinearLayout textView;
+TextView tv;
     public SimpleRecipeView(Context context) {
         super(context);
+        setOrientation(LinearLayout.VERTICAL);
+        setBackgroundColor(Color.BLACK);
 
-        setBackgroundColor(Color.YELLOW);
+     /*   imgView = new LinearLayout(context);
+        imgView.setOrientation(LinearLayout.HORIZONTAL);
+        imgView.setBackgroundColor(Color.BLUE);
+        addView(imgView);
+        textView = new LinearLayout(context);
+        textView.setOrientation(LinearLayout.HORIZONTAL);
 
-        simpleRecipeImageView = new SimpleRecipeImageView(context);
+        //addView(textView);
+
+        //simpleRecipeImageView = new SimpleRecipeImageView(context);
+        //imgView.addView(simpleRecipeImageView);
         timeIndicatorView = new TimeIndicatorView(context);
-        ingredientNumberView = new IngredientNumberView(context);
+  /*      ingredientNumberView = new IngredientNumberView(context);
         simpleRecipeNameView = new SimpleRecipeNameView(context);
+        tv = new TextView(context);
+        tv.setText("Slow Roasted Alpaca Steak Lasagna Fried Rice");
+        addView(tv);
+*/
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        simpleRecipeImageView.setLayoutParams(new LayoutParams(right, (int) (0.20 * bottom)));
+      /*  imgView.setLayoutParams(new LayoutParams(right, (int) (0.70 * bottom)));
+        tv.setLayoutParams(new LayoutParams(right, (int) (0.30 * bottom)));
+*/
+        /*simpleRecipeImageView.setLayoutParams(new LayoutParams(right, (int) (0.20 * bottom)));
         timeIndicatorView.setLayoutParams(new LayoutParams(right, (int) (0.30 * bottom)));
         ingredientNumberView.setLayoutParams(new LayoutParams(right, (int) (0.20 * bottom)));
-        simpleRecipeNameView.setLayoutParams(new LayoutParams(right, (int) (0.30 * bottom)));
+        simpleRecipeNameView.setLayoutParams(new LayoutParams(right, (int) (0.30 * bottom)));*/
     }
 
 }

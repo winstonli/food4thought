@@ -19,8 +19,8 @@ public class IngredientsView extends LinearLayout {
 
     public IngredientsView(Context context) {
         super(context);
-        setOrientation(LinearLayout.VERTICAL);
         setBackgroundColor(Color.CYAN);
+        setOrientation(LinearLayout.VERTICAL);
 
         friendlyTextView = new FriendlyTextView(context);
         addView(friendlyTextView);
@@ -34,7 +34,7 @@ public class IngredientsView extends LinearLayout {
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
         friendlyTextView.setLayoutParams(new LayoutParams(right, (int) (0.10 * bottom)));
-        ingredientSearchView.setLayoutParams(new LayoutParams(right, (int) (0.20 * bottom)));
-        ingredientOptionsView.setLayoutParams(new LayoutParams(right, (int) (0.70 * bottom)));
+        ingredientSearchView.setLayoutParams(new LayoutParams(right, (int) (0.10 * bottom)));
+        ingredientOptionsView.setLayoutParams(new LayoutParams(right, (int) (0.80 * bottom)));
     }
 }

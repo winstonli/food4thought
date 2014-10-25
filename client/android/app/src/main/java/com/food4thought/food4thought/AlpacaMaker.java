@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 
+import com.food4thought.food4thought.model.ApplicationModel;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.Food4ThoughtAppView;
 
 
@@ -17,6 +18,7 @@ public class AlpacaMaker extends Activity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        ApplicationModel.mainModel.getSuggestedIngredients().updateFromJSON();
         Food4ThoughtAppView view = new Food4ThoughtAppView(this);
         setContentView(view);
 
