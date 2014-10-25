@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.widget.LinearLayout;
 
+import com.food4thought.food4thought.R;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.IngredientsView;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.SimpleRecipesView;
 
@@ -18,7 +19,8 @@ public class Food4ThoughtAppView extends LinearLayout {
     public Food4ThoughtAppView(Context context) {
         super(context);
         setOrientation(LinearLayout.VERTICAL);
-        setBackgroundColor(Color.BLUE);
+        setBackground(getResources().getDrawable(R.drawable.background_day));
+//        setBackground(getResources().getDrawable(R.drawable.background_night));
 
         ingredientsView = new IngredientsView(context);
         addView(ingredientsView);

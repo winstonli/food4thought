@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 
+import com.food4thought.food4thought.R;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.ingredientsearch.ingredientsearchbutton.IngredientSearchButtonView;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.ingredientsearch.ingredientsearchinput.IngredientSearchInputView;
 
@@ -20,8 +21,8 @@ public class IngredientSearchView extends SearchView {
     public IngredientSearchView(Context context) {
         super(context);
         setOrientation(LinearLayout.HORIZONTAL);
-        setBackgroundColor(Color.DKGRAY);
-
+        setBackgroundColor(Color.argb(250,255,255,255));
+        setQueryHint("Add ingredient...");
         ingredientSearchInputView = new IngredientSearchInputView(context);
         addView(ingredientSearchInputView);
         ingredientSearchButtonView = new IngredientSearchButtonView(context);

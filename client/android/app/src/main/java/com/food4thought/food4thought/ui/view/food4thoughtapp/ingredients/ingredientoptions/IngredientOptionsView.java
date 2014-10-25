@@ -36,7 +36,6 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
         super(context);
 
         setOrientation(LinearLayout.VERTICAL);
-        setBackgroundColor(Color.LTGRAY);
 
         scrollView = new ScrollView(context);
         addView(scrollView);
@@ -54,7 +53,7 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
 
     @Override
     public void update(PublishCode code, SuggestedIngredients publisher) {
-        int maxWidth = this.getWidth();
+    /*    int maxWidth = this.getWidth();
         int currentWidth = 0;
         LinearLayout currentLine = new LinearLayout(getContext());
         addView(currentLine);
@@ -81,6 +80,6 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
             });
             //options.add(view);
             scrollViewInner.addView(view);
-        }
+        }*/
     }
 }

@@ -2,6 +2,7 @@ package com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.view.Gravity;
 import android.widget.LinearLayout;
 
 import com.food4thought.food4thought.model.ApplicationModel;
@@ -20,12 +21,12 @@ public class IngredientsView extends LinearLayout {
 
     public IngredientsView(Context context) {
         super(context);
-        setBackgroundColor(Color.CYAN);
         setOrientation(LinearLayout.VERTICAL);
 
         friendlyTextView = new FriendlyTextView(context);
         addView(friendlyTextView);
         ingredientSearchView = new IngredientSearchView(context);
+//        ingredientSearchView.setGravity(Gravity.CENTER);
         addView(ingredientSearchView);
         ingredientOptionsView = new IngredientOptionsView(context);
         addView(ingredientOptionsView);
@@ -35,8 +36,10 @@ public class IngredientsView extends LinearLayout {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        friendlyTextView.setLayoutParams(new LayoutParams(right, (int) (0.10 * bottom)));
-        ingredientSearchView.setLayoutParams(new LayoutParams(right, (int) (0.10 * bottom)));
-        ingredientOptionsView.setLayoutParams(new LayoutParams(right, (int) (0.80 * bottom)));
+        friendlyTextView.setLayoutParams(new LayoutParams(right, (int) (0.12 * bottom)));
+        LayoutParams params = new LayoutParams((int) (right * 0.85), (int) (0.10 * bottom));
+        params.setMargins((int) (0.075 * right), 0, 0, 0);
+        ingredientSearchView.setLayoutParams(params);
+        ingredientOptionsView.setLayoutParams(new LayoutParams(right, (int) (0.78 * bottom)));
     }
 }

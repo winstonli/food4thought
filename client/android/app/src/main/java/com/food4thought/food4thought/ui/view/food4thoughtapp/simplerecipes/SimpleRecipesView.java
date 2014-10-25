@@ -31,9 +31,6 @@ public class SimpleRecipesView extends LinearLayout {
     public SimpleRecipesView(Context context) {
         super(context);
         setOrientation(LinearLayout.HORIZONTAL);
-
-        setBackgroundColor(Color.YELLOW);
-
         s1 = new SimpleRecipeView(context, getResources().getDrawable(R.drawable.base));
         s2 = new SimpleRecipeView(context, getResources().getDrawable(R.drawable.base));
 

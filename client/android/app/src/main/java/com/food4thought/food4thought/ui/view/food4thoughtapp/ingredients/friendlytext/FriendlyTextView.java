@@ -2,6 +2,8 @@ package com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.friend
 
         import android.content.Context;
         import android.graphics.Color;
+        import android.util.TypedValue;
+        import android.view.Gravity;
         import android.widget.TextView;
 
 /**
@@ -9,12 +11,12 @@ package com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.friend
  */
 public class FriendlyTextView extends TextView{
 
-    private String text = "What's in your kitchen? :)";
+    private String text = "What's in your kitchen?";
 
     public FriendlyTextView(Context context) {
         super(context);
-        setBackgroundColor(Color.MAGENTA);
-        setTextAlignment(TEXT_ALIGNMENT_CENTER);
+        setGravity(Gravity.CENTER);
+        setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
         setText(text);
     }
 }
