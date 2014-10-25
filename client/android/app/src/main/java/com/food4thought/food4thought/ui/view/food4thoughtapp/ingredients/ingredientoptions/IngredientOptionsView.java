@@ -39,7 +39,7 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
         scrollViewInner = new LinearLayout(context);
         scrollViewInner.setOrientation(LinearLayout.VERTICAL);
         scrollView.addView(scrollViewInner);
-
+        scrollView.setScrollContainer(false);
 
         for(IngredientOptionView i : options) {
             scrollViewInner.addView(i);
