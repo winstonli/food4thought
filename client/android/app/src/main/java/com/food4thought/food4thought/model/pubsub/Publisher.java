@@ -1,7 +1,5 @@
 package com.food4thought.food4thought.model.pubsub;
 
-import com.food4thought.food4thought.model.PublishCode;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +18,7 @@ public class Publisher<P> {
 
     public void subscribe(Subscriber<P> subscriber) {
         subscribers.add(subscriber);
+        subscriber.update(PublishCode.INITIAL, publisher);
     }
 
     public void unsubscribe(Subscriber<P> subscriber) {

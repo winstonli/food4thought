@@ -1,34 +1,34 @@
 package com.food4thought.food4thought.model;
 
+import com.food4thought.food4thought.model.pubsub.PublishCode;
+import com.food4thought.food4thought.model.pubsub.Publisher;
+
 /**
  * Created by Roxy on 25/10/14.
  */
-public class ApplicationModel {
+public class ApplicationModel implements JSONSource {
 
-    private Country country;
+    public Publisher<ApplicationModel> publisher;
+
+    private CuisineType cuisineType;
     private MealType mealType;
     private SuggestedIngredients suggestedIngredients;
     private SuggestedRecipes suggestedRecipes;
 
     public ApplicationModel() {
 
-        country = new Country();
+        cuisineType = CuisineType.BRITISH;
         mealType = MealType.BREAKFAST;
         suggestedIngredients = new SuggestedIngredients();
         suggestedRecipes = new SuggestedRecipes();
 
     }
 
+    @Override
     public void updateFromJSON() {
-
+        suggestedIngredients.updateFromJSON();
+        suggestedRecipes.updateFromJSON();
+        publisher.publishWithCode(PublishCode.APPLICATION_MODEL_UPDATE);
     }
-
-
-
-
-
-
-
-
 
 }
