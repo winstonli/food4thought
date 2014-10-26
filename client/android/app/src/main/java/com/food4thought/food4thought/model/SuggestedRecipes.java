@@ -16,6 +16,11 @@ public class SuggestedRecipes implements JSONSource {
         publisher = new Publisher<SuggestedRecipes>(this);
         recipes = new JSONSourceList<Recipe>();
         recipes.add(new Recipe());
+        recipes.add(new Recipe());
+    }
+
+    public JSONSourceList<Recipe> getRecipes() {
+        return recipes;
     }
 
     @Override

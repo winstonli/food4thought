@@ -18,7 +18,7 @@ public class AlpacaMaker extends Activity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        ApplicationModel.mainModel.getSuggestedIngredients().updateFromJSON();
+        ApplicationModel.mainModel.updateFromJSON();
         Food4ThoughtAppView view = new Food4ThoughtAppView(this);
         setContentView(view);
         view.setApplicationModel(ApplicationModel.mainModel);

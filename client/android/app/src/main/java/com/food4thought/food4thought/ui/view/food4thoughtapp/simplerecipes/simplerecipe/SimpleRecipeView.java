@@ -13,6 +13,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.food4thought.food4thought.R;
+import com.food4thought.food4thought.model.Recipe;
+import com.food4thought.food4thought.model.pubsub.PublishCode;
+import com.food4thought.food4thought.model.pubsub.Subscriber;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.simplerecipe.ingredientnumber.IngredientNumberView;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.simplerecipe.simplerecipeimage.SimpleRecipeImageView;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.simplerecipe.simplerecipename.SimpleRecipeNameView;
@@ -21,12 +24,13 @@ import com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.simpl
 /**
  * Created by Roxy on 25/10/14.
  */
-public class SimpleRecipeView extends RelativeLayout {
+public class SimpleRecipeView extends RelativeLayout implements Subscriber<Recipe> {
 
     private ImageView simpleRecipeImageView;
     private TimeIndicatorView timeIndicatorView;
     private IngredientNumberView ingredientNumberView;
     private SimpleRecipeNameView simpleRecipeNameView;
+    private Recipe recipe;
 
 
     //private LinearLayout containerView;
@@ -65,6 +69,16 @@ public class SimpleRecipeView extends RelativeLayout {
         simpleRecipeImageView.setLayoutParams(new LayoutParams(right, (int) (0.80 * bottom)));
         simpleRecipeNameView.setLayoutParams(new LayoutParams(right, (int) (0.20 * bottom)));
 
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+        recipe.publisher.subscribe(this);
+    }
+
+    @Override
+    public void update(PublishCode code, Recipe publisher) {
+        simpleRecipeNameView.setText(publisher.getName());
     }
 
 }
