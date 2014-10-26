@@ -21,6 +21,7 @@ public class AlpacaMaker extends Activity {
         ApplicationModel.mainModel.getSuggestedIngredients().updateFromJSON();
         Food4ThoughtAppView view = new Food4ThoughtAppView(this);
         setContentView(view);
+        view.setApplicationModel(ApplicationModel.mainModel);
 
     }
 

@@ -36,6 +36,7 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
     ScrollView scrollView;
     LinearLayout scrollViewInner;
     List<IngredientOptionView> subviews;
+    private SuggestedIngredients suggestedIngredients;
 
     public IngredientOptionsView(Context context) {
         super(context);
@@ -109,4 +110,10 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
             subview.getIngredient().publisher.unsubscribe(subview);
         }
     }
+
+    public void setSuggestedIngredients(SuggestedIngredients suggestedIngredients) {
+        this.suggestedIngredients = suggestedIngredients;
+        suggestedIngredients.publisher.subscribe(this);
+    }
+
 }

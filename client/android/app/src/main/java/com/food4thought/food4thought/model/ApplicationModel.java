@@ -19,6 +19,7 @@ public class ApplicationModel implements JSONSource {
 
     public ApplicationModel() {
 
+        publisher = new Publisher<ApplicationModel>(this);
         cuisineType = CuisineType.BRITISH;
         mealType = MealType.BREAKFAST;
         suggestedIngredients = new SuggestedIngredients();

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.food4thought.food4thought.AlpacaMaker;
 import com.food4thought.food4thought.R;
 import com.food4thought.food4thought.RecipeActivity;
+import com.food4thought.food4thought.model.SuggestedRecipes;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.Food4ThoughtAppView;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.simplerecipe.SimpleRecipeView;
 import com.food4thought.food4thought.ui.view.food4thoughtrecipe.RecipeView;
@@ -32,6 +33,7 @@ public class SimpleRecipesView extends LinearLayout {
     private SimpleRecipeView s2;
 
     private ArrayList<SimpleRecipeView> recipes = new ArrayList<SimpleRecipeView>();
+    private SuggestedRecipes suggestedRecipes;
 
     public SimpleRecipesView(Context context) {
         super(context);
@@ -68,10 +70,8 @@ public class SimpleRecipesView extends LinearLayout {
 
     }
 
-
-
-
-
-
+    public void setSuggestedRecipes(SuggestedRecipes suggestedRecipes) {
+        this.suggestedRecipes = suggestedRecipes;
+    }
 
 }

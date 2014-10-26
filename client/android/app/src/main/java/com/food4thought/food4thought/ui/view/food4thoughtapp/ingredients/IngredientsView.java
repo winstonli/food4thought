@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.widget.LinearLayout;
 
 import com.food4thought.food4thought.model.ApplicationModel;
+import com.food4thought.food4thought.model.SuggestedIngredients;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.friendlytext.FriendlyTextView;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.ingredientoptions.IngredientOptionsView;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.ingredientsearch.IngredientSearchView;
@@ -18,6 +19,7 @@ public class IngredientsView extends LinearLayout {
     private FriendlyTextView friendlyTextView;
     private IngredientSearchView ingredientSearchView;
     private IngredientOptionsView ingredientOptionsView;
+    private SuggestedIngredients suggestedIngredients;
 
     public IngredientsView(Context context) {
         super(context);
@@ -30,7 +32,6 @@ public class IngredientsView extends LinearLayout {
         addView(ingredientSearchView);
         ingredientOptionsView = new IngredientOptionsView(context);
         addView(ingredientOptionsView);
-        ApplicationModel.mainModel.getSuggestedIngredients().publisher.subscribe(ingredientOptionsView);
     }
 
     @Override
@@ -41,5 +42,9 @@ public class IngredientsView extends LinearLayout {
         params.setMargins((int) (0.075 * right), 0, 0, 0);
         ingredientSearchView.setLayoutParams(params);
         ingredientOptionsView.setLayoutParams(new LayoutParams(right, (int) (0.78 * bottom)));
+    }
+
+    public void setSuggestedIngredients(SuggestedIngredients suggestedIngredients) {
+        ingredientOptionsView.setSuggestedIngredients(suggestedIngredients);
     }
 }

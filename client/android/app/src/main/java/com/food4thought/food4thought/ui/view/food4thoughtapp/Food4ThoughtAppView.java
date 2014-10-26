@@ -10,17 +10,21 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.food4thought.food4thought.R;
+import com.food4thought.food4thought.model.ApplicationModel;
+import com.food4thought.food4thought.model.pubsub.PublishCode;
+import com.food4thought.food4thought.model.pubsub.Subscriber;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.IngredientsView;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.SimpleRecipesView;
 
 /**
  * Created by Roxy on 25/10/14.
  */
-public class Food4ThoughtAppView extends LinearLayout {
+public class Food4ThoughtAppView extends LinearLayout implements Subscriber<ApplicationModel> {
 
     private IngredientsView ingredientsView;
     private TextView youCanMakeView;
     private SimpleRecipesView simpleRecipesView;
+    private ApplicationModel applicationModel;
 
 
     public Food4ThoughtAppView(Context context) {
@@ -51,4 +55,14 @@ public class Food4ThoughtAppView extends LinearLayout {
 
     }
 
+    public void setApplicationModel(ApplicationModel mainModel) {
+        applicationModel = mainModel;
+        mainModel.publisher.subscribe(this);
+    }
+
+    @Override
+    public void update(PublishCode code, ApplicationModel publisher) {
+        ingredientsView.setSuggestedIngredients(publisher.getSuggestedIngredients());
+        simpleRecipesView.setSuggestedRecipes(publisher.getSuggestedRecipes());
+    }
 }
