@@ -28,26 +28,7 @@ public class RecipeIngredientsView extends LinearLayout {
         ll.setOrientation(VERTICAL);
         addView(scroll);
         scroll.addView(ll);
-        ll.addView(new IngredientOptionView(context, "jelly kid", 1));
-        ll.addView(new IngredientOptionView(context, "jelly kid", 1));
-        ll.addView(new IngredientOptionView(context, "jelly kid", 1));
-        ll.addView(new IngredientOptionView(context, "jelly kid", 1));
-        ll.addView(new IngredientOptionView(context, "jelly kid", 1));
-        ll.addView(new IngredientOptionView(context, "jelly kid", 1));
-        ll.addView(new IngredientOptionView(context, "jelly kid", 1));
-        ll.addView(new IngredientOptionView(context, "jelly kid", 1));
-        ll.addView(new IngredientOptionView(context, "jelly kid", 1));
-        ll.addView(new IngredientOptionView(context, "jelly kid", 1));
-        ll.addView(new IngredientOptionView(context, "jelly kid", 1));
-        ll.addView(new IngredientOptionView(context, "jelly kid", 1));
-        ll.addView(new IngredientOptionView(context, "jelly kid", 1));
-        ll.addView(new IngredientOptionView(context, "jelly kid", 1));
-        ll.addView(new IngredientOptionView(context, "jelly kid", 1));
-        ll.addView(new IngredientOptionView(context, "jelly kid", 1));
-        ll.addView(new IngredientOptionView(context, "jelly kid", 1));
-        ll.addView(new IngredientOptionView(context, "jelly kid", 1));
-        ll.addView(new IngredientOptionView(context, "jelly kid", 1));
-        ll.addView(new IngredientOptionView(context, "jelly kid", 1));
+//        ll.addView(new IngredientOptionView(context, "jelly kid", 1));
 
 
         //recipeIngredientView = new RecipeIngredientView(context);
