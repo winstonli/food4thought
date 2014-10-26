@@ -21,6 +21,7 @@ import com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.friendl
 import com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.ingredientoptions.ingredientoption.IngredientOptionView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -34,8 +35,11 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
 
     ScrollView scrollView;
     LinearLayout scrollViewInner;
+    List<IngredientOptionView> subviews;
+
     public IngredientOptionsView(Context context) {
         super(context);
+
 
         setOrientation(LinearLayout.VERTICAL);
 
@@ -51,6 +55,9 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
         scrollView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        for (IngredientOptionView view : subviews) {
+            view.setPadding(0, (int) (0.1 * bottom), 0, (int) (0.05 * bottom));
+        }
     }
 
     @Override
@@ -63,8 +70,10 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
         currentLine.setGravity(Gravity.CENTER);
         int noOfThings = 0;
 
+        subviews = new ArrayList<IngredientOptionView>();
         for(Ingredient i: publisher.getIngredients()) {
             IngredientOptionView view = new IngredientOptionView(getContext(), i.getName(), i.getId());
+            subviews.add(view);
             currentLine.addView(view);
             LinearLayout.LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f * i.getName().length());
             view.setLayoutParams(lp);
@@ -87,6 +96,8 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
             //options.add(view);
             //scrollViewInner.addView(view);
         }
+
+        requestLayout();
         if (noOfThings == 0) {
             return;
         }
