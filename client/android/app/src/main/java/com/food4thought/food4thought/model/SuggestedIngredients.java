@@ -36,11 +36,14 @@ public class SuggestedIngredients implements JSONSource {
                 ids.add(ingredient.getId());
             }
         }
+        Log.wtf("miaow", "Selected recipes: " + ids);
         return ids;
     }
 
     @Override
     public void updateFromJSON(JsonElement json) {
+        Log.wtf("miaow", "ingredients recipes: " + json.toString());
+
         ingredients = new JSONSourceList<Ingredient>();
         for (int i = 0; i < ((JsonArray) json).size(); i++) {
             ingredients.add(new Ingredient());

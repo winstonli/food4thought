@@ -4,9 +4,12 @@ import android.util.Log;
 
 import com.food4thought.food4thought.model.pubsub.PublishCode;
 import com.food4thought.food4thought.model.pubsub.Publisher;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +38,7 @@ public class Recipe implements JSONSource {
 
     int id;
     private String name;
+    private String url;
 
     public JSONSourceList<Ingredient> getIngredients() {
         return ingredients;
@@ -65,10 +69,20 @@ public class Recipe implements JSONSource {
         JsonObject jsonObject = (JsonObject) json;
         id = jsonObject.get("id").getAsInt();
         name = jsonObject.get("name").getAsString();
-        ingredients.updateFromJSON(json);
+
+
+
+        ingredients = new JSONSourceList<Ingredient>();
+        JsonArray ingredientsJSON = (JsonArray) ((JsonObject) json).get("ingredients");
+        for (int i = 0; i < ingredientsJSON.size(); i++) {
+            ingredients.add(new Ingredient());
+        }
+        ingredients.updateFromJSON(ingredientsJSON);
+
         description = jsonObject.get("description").getAsString();
         publisher.publishWithCode(PublishCode.RECIPE_UPDATED);
         time = jsonObject.get("time").getAsInt();
+        url = jsonObject.get("image_url").toString();
     }
 
     public String getName() {
@@ -77,5 +91,14 @@ public class Recipe implements JSONSource {
 
     public int getID() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public String getURL() {
+        return url;
     }
 }

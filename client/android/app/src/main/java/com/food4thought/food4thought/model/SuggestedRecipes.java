@@ -16,10 +16,12 @@ public class SuggestedRecipes implements JSONSource {
     public Publisher<SuggestedRecipes> publisher;
 
     private JSONSourceMap<Integer, Recipe> recipes;
+    private JSONSourceList<Recipe> recipeList;
 
     public SuggestedRecipes() {
         publisher = new Publisher<SuggestedRecipes>(this);
         recipes = new JSONSourceMap<Integer, Recipe>();
+        recipeList = new JSONSourceList<Recipe>();
     }
 
     public JSONSourceMap<Integer, Recipe> getRecipes() {
@@ -28,7 +30,6 @@ public class SuggestedRecipes implements JSONSource {
 
     @Override
     public void updateFromJSON(JsonElement json) {
-        Log.wtf("mioaw", json.toString());
         recipes = new JSONSourceMap<Integer, Recipe>();
         JsonArray jsonArray = (JsonArray) json;
         Log.wtf("miaow", "recipes: " + jsonArray.toString());
@@ -36,7 +37,16 @@ public class SuggestedRecipes implements JSONSource {
             recipes.put(((JsonObject) jsonArray.get(i)).get("id").getAsInt(), new Recipe());
         }
         recipes.updateFromJSON(json);
+        recipeList = new JSONSourceList<Recipe>();
+        for (int i = 0; i < jsonArray.size(); i++) {
+            recipeList.add(new Recipe());
+        }
+        recipeList.updateFromJSON(json);
+
         publisher.publishWithCode(PublishCode.SUGGESTED_RECIPES_UPDATED);
     }
 
+    public JSONSourceList<Recipe> getRecipeList() {
+        return recipeList;
+    }
 }

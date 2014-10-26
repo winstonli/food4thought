@@ -5,10 +5,15 @@ import com.food4thought.food4thought.model.pubsub.Publisher;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by Roxy on 25/10/14.
  */
 public class Ingredient implements JSONSource {
+
+    public static Set<Ingredient> selectedIngredients = new HashSet<Ingredient>();
 
     private static String[] names = {
             "Alpaca Meat",
@@ -37,11 +42,22 @@ public class Ingredient implements JSONSource {
     }
 
     @Override
+    public int hashCode() {
+        return id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof Ingredient && ((Ingredient) o).id == id;
+    }
+
+    @Override
     public void updateFromJSON(JsonElement json) {
         JsonObject jsonObject = (JsonObject) json;
         id = jsonObject.get("id").getAsInt();
         name = jsonObject.get("name").getAsString();
         publisher.publishWithCode(PublishCode.INGREDIENT_UPDATED);
+        selected = selectedIngredients.contains(this);
     }
 
     public String getName() {
@@ -52,7 +68,13 @@ public class Ingredient implements JSONSource {
 
     public void setSelected(boolean selected) {
         this.selected = selected;
+        if (selected) {
+            selectedIngredients.add(this);
+        } else {
+            selectedIngredients.remove(this);
+        }
         publisher.publishWithCode(PublishCode.INGREDIENT_SELECTED_UPDATED);
+        ApplicationModel.mainModel.requestState();
     }
 
     public boolean isSelected() {

@@ -3,12 +3,14 @@ package com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.ingred
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.food4thought.food4thought.R;
+import com.food4thought.food4thought.model.ApplicationModel;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.ingredientsearch.ingredientsearchbutton.IngredientSearchButtonView;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.ingredientsearch.ingredientsearchinput.IngredientSearchInputView;
 
@@ -33,7 +35,19 @@ public class IngredientSearchView extends SearchView {
         TextView textView = (TextView) findViewById(id);
         Typeface myTypeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/Bariol_Regular.otf");
         textView.setTypeface(myTypeface);
+        setOnQueryTextListener(new OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                ApplicationModel.setCurrentSearch(newText);
+                return false;
+            }
+
+        });
 
     }
 

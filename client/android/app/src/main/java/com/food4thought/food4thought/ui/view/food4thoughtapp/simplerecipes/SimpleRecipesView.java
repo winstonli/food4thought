@@ -23,6 +23,8 @@ import com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.simpl
 import com.food4thought.food4thought.ui.view.food4thoughtrecipe.RecipeView;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by Roxy on 25/10/14.
@@ -59,21 +61,23 @@ public class SimpleRecipesView extends LinearLayout implements Subscriber<Sugges
     }
 
     public void setSuggestedRecipes(SuggestedRecipes suggestedRecipes) {
+        if (this.suggestedRecipes != null) {
+            this.suggestedRecipes.publisher.unsubscribe(this);
+        }
         this.suggestedRecipes = suggestedRecipes;
         suggestedRecipes.publisher.subscribe(this);
     }
 
     @Override
     public void update(PublishCode code, SuggestedRecipes publisher) {
-        Recipe recipe1 = publisher.getRecipes().get(0);
-        if (recipe1 != null) {
-            recipe1.publisher.unsubscribe(s1);
-            s1.setRecipe(recipe1);
-        }
+        Log.wtf("miaow", "suggested recipes: " + publisher.getRecipes());
+        List<Recipe> recipes = publisher.getRecipeList();
 
-        Recipe recipe2 = publisher.getRecipes().get(1);
-        if (recipe2 != null) {
-            recipe2.publisher.unsubscribe(s2);
+        if (recipes.size() > 0) {
+            Recipe recipe1 = recipes.get(0);
+            Log.wtf("miaow", "setting recipe to: " + recipe1);
+            s1.setRecipe(recipe1);
+            Recipe recipe2 = recipes.get(1);
             s2.setRecipe(recipe2);
         }
     }

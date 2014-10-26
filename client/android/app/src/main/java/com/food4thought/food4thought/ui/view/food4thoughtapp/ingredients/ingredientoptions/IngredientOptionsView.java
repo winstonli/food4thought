@@ -125,6 +125,9 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
     }
 
     public void setSuggestedIngredients(SuggestedIngredients suggestedIngredients) {
+        if (this.suggestedIngredients != null) {
+            this.suggestedIngredients.publisher.unsubscribe(this);
+        }
         this.suggestedIngredients = suggestedIngredients;
         suggestedIngredients.publisher.subscribe(this);
     }

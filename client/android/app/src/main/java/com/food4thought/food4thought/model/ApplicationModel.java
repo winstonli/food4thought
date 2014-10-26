@@ -26,15 +26,21 @@ public class ApplicationModel implements JSONSource {
     private MealType mealType;
     private SuggestedIngredients suggestedIngredients;
     private SuggestedRecipes suggestedRecipes;
+    public static String currentSearch = "";
 
     public ApplicationModel() {
 
         publisher = new Publisher<ApplicationModel>(this);
         cuisineType = CuisineType.BRITISH;
-        mealType = MealType.BREAKFAST;
+        mealType = MealType.DINNER;
         suggestedIngredients = new SuggestedIngredients();
         suggestedRecipes = new SuggestedRecipes();
 
+    }
+
+    public static void setCurrentSearch(String currentSearch) {
+//        ApplicationModel.currentSearch = currentSearch;
+//        mainModel.requestState();
     }
 
     public SuggestedIngredients getSuggestedIngredients() {
@@ -57,7 +63,7 @@ public class ApplicationModel implements JSONSource {
             public void failed() {
                 Log.wtf("miaow", "Json failed");
             }
-        }, suggestedIngredients.getIDs(), "Breakfast", "British", "");
+        }, suggestedIngredients.getIDs(), "Dinner", "British", currentSearch);
     }
 
     @Override

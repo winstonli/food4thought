@@ -45,7 +45,14 @@ public class RecipeIngredientsView extends LinearLayout {
 
     public void setIngredients(JSONSourceList<Ingredient> ingredients) {
         for(Ingredient i: ingredients) {
-            ll.addView(new RecipeIngredientView(getContext(), i.getName()));
+            RecipeIngredientView ingView = new RecipeIngredientView(getContext(), i.getName());
+            ll.addView(ingView);
+            if (Ingredient.selectedIngredients.contains(i)) {
+                ingView.setTextColor(Color.GREEN);
+            } else {
+                ingView.setTextColor(Color.BLACK);
+            }
+
         }
     }
 }

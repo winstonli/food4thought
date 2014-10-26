@@ -12,7 +12,6 @@ public class RecipeImageView extends ImageView {
     public RecipeImageView(Context context) {
         super(context);
 
-        setBackgroundColor(Color.BLUE);
 
     }
 }

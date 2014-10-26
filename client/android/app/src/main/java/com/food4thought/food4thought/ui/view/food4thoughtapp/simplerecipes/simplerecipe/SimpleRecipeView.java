@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.food4thought.food4thought.R;
 import com.food4thought.food4thought.RecipeActivity;
+import com.food4thought.food4thought.model.Ingredient;
 import com.food4thought.food4thought.model.Recipe;
 import com.food4thought.food4thought.model.pubsub.PublishCode;
 import com.food4thought.food4thought.model.pubsub.Subscriber;
@@ -24,6 +25,7 @@ import com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.simpl
 import com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.simplerecipe.simplerecipeimage.SimpleRecipeImageView;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.simplerecipe.simplerecipename.SimpleRecipeNameView;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.simplerecipe.timeindicator.TimeIndicatorView;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by Roxy on 25/10/14.
@@ -52,7 +54,6 @@ public class SimpleRecipeView extends RelativeLayout implements Subscriber<Recip
         setClickable(true);
         setGravity(Gravity.CENTER);
         simpleRecipeNameView = new SimpleRecipeNameView(context);
-        simpleRecipeNameView.setText("Steamed Alpaca Buns");
 
         simpleRecipeImageView = new ImageView(context);
         //simpleRecipeImageView.setBackgroundColor(Color.CYAN);
@@ -63,15 +64,6 @@ public class SimpleRecipeView extends RelativeLayout implements Subscriber<Recip
         addView(simpleRecipeNameView);
         //setBackground(getResources().getDrawable(R.drawable.base));
         //setText("Fried Alpaca Dumplings");
-        setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Toast.makeText(getContext(), recipe.getName(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getContext(), RecipeActivity.class);
-                intent.putExtra(RECIPE_ID, recipe.getID());
-                getContext().startActivity(intent);
-            }
-        });
 
     }
 
@@ -86,13 +78,34 @@ public class SimpleRecipeView extends RelativeLayout implements Subscriber<Recip
     }
 
     public void setRecipe(Recipe recipe) {
+        if (this.recipe != null) {
+            this.recipe.publisher.unsubscribe(this);
+        }
         this.recipe = recipe;
         recipe.publisher.subscribe(this);
     }
 
     @Override
-    public void update(PublishCode code, Recipe publisher) {
-        simpleRecipeNameView.setText(publisher.getName());
+    public void update(PublishCode code, final Recipe publisher) {
+        Log.wtf("miaow", "recipe update to: " + publisher);
+        int total = publisher.getIngredients().size();
+        int current = 0;
+        for (Ingredient ingredient : Ingredient.selectedIngredients) {
+            if (publisher.getIngredients().contains(ingredient)) {
+                current++;
+            }
+        }
+        Picasso.with(getContext()).load(publisher.getURL()).into(simpleRecipeImageView);
+        simpleRecipeNameView.setText(publisher.getName() + " (" + current + "/" + total + ")");
+        setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Toast.makeText(getContext(), recipe.getName(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), RecipeActivity.class);
+                intent.putExtra(RECIPE_ID, publisher.getID());
+                getContext().startActivity(intent);
+            }
+        });
     }
 
 }
