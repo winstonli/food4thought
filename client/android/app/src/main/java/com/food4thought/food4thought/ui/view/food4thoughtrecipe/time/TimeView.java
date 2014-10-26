@@ -10,6 +10,6 @@ import android.widget.LinearLayout;
 public class TimeView extends LinearLayout {
     public TimeView(Context context) {
         super(context);
-        setBackgroundColor(Color.BLUE);
+        setBackgroundColor(Color.LTGRAY);
     }
 }

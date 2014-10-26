@@ -1,6 +1,7 @@
 package com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
@@ -11,8 +12,12 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.food4thought.food4thought.AlpacaMaker;
 import com.food4thought.food4thought.R;
+import com.food4thought.food4thought.RecipeActivity;
+import com.food4thought.food4thought.ui.view.food4thoughtapp.Food4ThoughtAppView;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.simplerecipe.SimpleRecipeView;
+import com.food4thought.food4thought.ui.view.food4thoughtrecipe.RecipeView;
 
 import java.util.ArrayList;
 
@@ -38,6 +43,8 @@ public class SimpleRecipesView extends LinearLayout {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(), "s1", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), RecipeActivity.class);
+                getContext().startActivity(intent);
             }
         });
 
