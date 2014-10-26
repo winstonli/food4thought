@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.food4thought.food4thought.model.pubsub.PublishCode;
 import com.food4thought.food4thought.model.pubsub.Publisher;
+import com.google.gson.JsonElement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,15 +42,12 @@ public class Recipe implements JSONSource {
         publisher = new Publisher<Recipe>(this);
         selected = false;
         ingredients = new JSONSourceList<Ingredient>();
-        ingredients.add(new Ingredient());
-        ingredients.add(new Ingredient());
-        ingredients.add(new Ingredient());
     }
 
     @Override
-    public void updateFromJSON() {
+    public void updateFromJSON(JsonElement json) {
         name = names[(int) (names.length * Math.random())];
-        ingredients.updateFromJSON();
+        ingredients.updateFromJSON(json);
         description = "Put Fried alpaca in poo";
         publisher.publishWithCode(PublishCode.RECIPE_UPDATED);
         time = 60;

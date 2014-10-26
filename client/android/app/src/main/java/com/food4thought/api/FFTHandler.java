@@ -4,7 +4,7 @@ import com.google.gson.JsonElement;
 
 public interface FFTHandler {
   
-  public void jsonReceived(JsonElement newJsonElement);
+  public void jsonReceived(JsonElement json);
 
   public void failed();
 

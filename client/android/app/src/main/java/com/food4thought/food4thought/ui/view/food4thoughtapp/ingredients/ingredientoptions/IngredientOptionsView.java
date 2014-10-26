@@ -21,6 +21,7 @@ import com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.friendl
 import com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.ingredientoptions.ingredientoption.IngredientOptionView;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -61,16 +62,20 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
         }
     }
 
+    private List<LinearLayout> lines = new LinkedList<LinearLayout>();
+
+
     @Override
     public void update(PublishCode code, SuggestedIngredients publisher) {
 
+        removeSubviews(publisher);
         int currentWidth = 0;
         LinearLayout currentLine = new LinearLayout(getContext());
+        lines.add(currentLine);
         scrollViewInner.addView(currentLine);
         currentLine.setOrientation(LinearLayout.HORIZONTAL);
         currentLine.setGravity(Gravity.CENTER);
         int noOfThings = 0;
-        removeSubviews(publisher);
 
         subviews = new ArrayList<IngredientOptionView>();
         for(Ingredient i: publisher.getIngredients()) {
@@ -108,7 +113,15 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
     private void removeSubviews(SuggestedIngredients publisher) {
         for (IngredientOptionView subview : subviews) {
             subview.getIngredient().publisher.unsubscribe(subview);
+            ((ViewGroup) subview.getParent()).removeView(subview);
         }
+
+        for (LinearLayout line : lines) {
+            line.removeAllViews();
+            removeView(line);
+        }
+        lines = new LinkedList<LinearLayout>();
+
     }
 
     public void setSuggestedIngredients(SuggestedIngredients suggestedIngredients) {

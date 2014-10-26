@@ -3,12 +3,18 @@ package com.food4thought.food4thought;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 
+import com.food4thought.api.FFTHandler;
+import com.food4thought.api.FoodForThoughtAPI;
 import com.food4thought.food4thought.model.ApplicationModel;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.Food4ThoughtAppView;
+import com.google.gson.JsonElement;
+
+import java.util.LinkedList;
 
 
 public class AlpacaMaker extends Activity {
@@ -18,10 +24,10 @@ public class AlpacaMaker extends Activity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        ApplicationModel.mainModel.updateFromJSON();
         Food4ThoughtAppView view = new Food4ThoughtAppView(this);
         setContentView(view);
         view.setApplicationModel(ApplicationModel.mainModel);
+        ApplicationModel.mainModel.requestState();
 
     }
 
