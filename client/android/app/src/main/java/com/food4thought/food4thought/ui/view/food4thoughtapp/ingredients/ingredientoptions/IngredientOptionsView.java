@@ -40,7 +40,7 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
     public IngredientOptionsView(Context context) {
         super(context);
 
-
+        subviews = new ArrayList<IngredientOptionView>();
         setOrientation(LinearLayout.VERTICAL);
 
         scrollView = new ScrollView(context);
@@ -69,10 +69,12 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
         currentLine.setOrientation(LinearLayout.HORIZONTAL);
         currentLine.setGravity(Gravity.CENTER);
         int noOfThings = 0;
+        removeSubviews(publisher);
 
         subviews = new ArrayList<IngredientOptionView>();
         for(Ingredient i: publisher.getIngredients()) {
-            IngredientOptionView view = new IngredientOptionView(getContext(), i.getName(), i.getId());
+            IngredientOptionView view = new IngredientOptionView(getContext());
+            view.setIngredient(i);
             subviews.add(view);
             currentLine.addView(view);
             LinearLayout.LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f * i.getName().length());
@@ -85,14 +87,6 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
                 currentLine.setOrientation(LinearLayout.HORIZONTAL);
                 currentLine.setGravity(Gravity.CENTER);
             }
-
-            view.setOnClickListener(new OnClickListener() {
-
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(getContext(), ((IngredientOptionView) view).getFudName(), Toast.LENGTH_LONG).show();
-                }
-            });
             //options.add(view);
             //scrollViewInner.addView(view);
         }
@@ -107,6 +101,12 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
             currentLine.addView(v);
             v.setVisibility(INVISIBLE);
             v.setLayoutParams(lp);
+        }
+    }
+
+    private void removeSubviews(SuggestedIngredients publisher) {
+        for (IngredientOptionView subview : subviews) {
+            subview.getIngredient().publisher.unsubscribe(subview);
         }
     }
 }
