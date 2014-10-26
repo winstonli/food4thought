@@ -21,6 +21,8 @@ public class RecipeProfileView extends LinearLayout {
         super(context);
         imageAndTimeView = new ImageAndTimeView(context);
         recipeIngredientsView = new RecipeIngredientsView(context);
+        imageAndTimeView.setPadding(90, 10, 10, 10);
+        recipeIngredientsView.setPadding(40, 10, 10, 10);
         setOrientation(HORIZONTAL);
         addView(imageAndTimeView);
         addView(recipeIngredientsView);
@@ -29,8 +31,8 @@ public class RecipeProfileView extends LinearLayout {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        imageAndTimeView.setLayoutParams(new LayoutParams((int) (0.50 * right), bottom));
-        recipeIngredientsView.setLayoutParams(new LayoutParams((int) (0.50 * right), bottom));
+        imageAndTimeView.setLayoutParams(new LayoutParams((int) (0.55 * right), bottom));
+        recipeIngredientsView.setLayoutParams(new LayoutParams((int) (0.45 * right), bottom));
 
     }
 

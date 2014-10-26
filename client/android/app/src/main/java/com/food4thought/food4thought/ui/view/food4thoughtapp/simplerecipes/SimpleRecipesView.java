@@ -10,7 +10,6 @@ import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.widget.Toast;
 
 import com.food4thought.food4thought.AlpacaMaker;
 import com.food4thought.food4thought.R;
