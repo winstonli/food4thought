@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 
 import com.food4thought.food4thought.model.ApplicationModel;
@@ -20,9 +21,16 @@ public class AlpacaMaker extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         ApplicationModel.mainModel.updateFromJSON();
         Food4ThoughtAppView view = new Food4ThoughtAppView(this);
+        view.setTimeBackground();
         setContentView(view);
         view.setApplicationModel(ApplicationModel.mainModel);
 
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+      //  ((Food4ThoughtAppView) (getCurrentFocus())).setTimeBackground();
     }
 
     @Override

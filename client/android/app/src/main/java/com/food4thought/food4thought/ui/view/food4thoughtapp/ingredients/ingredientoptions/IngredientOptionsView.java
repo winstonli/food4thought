@@ -38,6 +38,8 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
     List<IngredientOptionView> subviews;
     private SuggestedIngredients suggestedIngredients;
 
+    private boolean isDay;
+
     public IngredientOptionsView(Context context) {
         super(context);
 
@@ -52,6 +54,22 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
         scrollView.setScrollContainer(false);
 
     }
+
+    public IngredientOptionsView(Context context, boolean isDay) {
+        super(context);
+        this.isDay = isDay;
+        subviews = new ArrayList<IngredientOptionView>();
+        setOrientation(LinearLayout.VERTICAL);
+
+        scrollView = new ScrollView(context);
+        addView(scrollView);
+        scrollViewInner = new LinearLayout(context);
+        scrollViewInner.setOrientation(LinearLayout.VERTICAL);
+        scrollView.addView(scrollViewInner);
+        scrollView.setScrollContainer(false);
+
+    }
+
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
@@ -74,7 +92,7 @@ public class IngredientOptionsView extends LinearLayout implements Subscriber<Su
 
         subviews = new ArrayList<IngredientOptionView>();
         for(Ingredient i: publisher.getIngredients()) {
-            IngredientOptionView view = new IngredientOptionView(getContext());
+            IngredientOptionView view = new IngredientOptionView(getContext(), isDay);
             view.setIngredient(i);
             subviews.add(view);
             currentLine.addView(view);
