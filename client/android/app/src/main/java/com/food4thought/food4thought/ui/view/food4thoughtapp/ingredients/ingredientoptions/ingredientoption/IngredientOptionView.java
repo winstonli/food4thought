@@ -24,7 +24,7 @@ public class IngredientOptionView extends Button implements Subscriber<Ingredien
     //public static final int FUD_ID = 1;
 
     private Ingredient ingredient;
-
+    private boolean isDay;
     public IngredientOptionView(Context context) {
         super(context);
         Typeface myTypeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/Bariol_Regular.otf");
@@ -42,6 +42,26 @@ public class IngredientOptionView extends Button implements Subscriber<Ingredien
         });
     }
 
+    public IngredientOptionView(Context context, boolean isDay) {
+        super(context);
+        Typeface myTypeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/Bariol_Regular.otf");
+        setTypeface(myTypeface);
+        setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        this.isDay = isDay;
+
+        setBackgroundColor(Color.argb(0, 0, 0, 0));
+        setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ingredient.invertSelected();
+//                Toast.makeText(getContext(), ingredient.getName(), Toast.LENGTH_LONG).show();
+
+            }
+        });
+    }
+
+
     public void setIngredient(Ingredient ingredient) {
         this.ingredient = ingredient;
         ingredient.publisher.subscribe(this);
@@ -51,12 +71,25 @@ public class IngredientOptionView extends Button implements Subscriber<Ingredien
     public void update(PublishCode code, Ingredient publisher) {
         setText(publisher.getName());
         if (publisher.isSelected()) {
-            setTextColor(Color.WHITE);
-            setShadowLayer((float) 0.01, -2, 2, Color.BLACK);
+            //night select
+            if (!isDay) {
+                setTextColor(Color.YELLOW);
+                setShadowLayer((float) 0.01, -2, 2, Color.BLACK);
+
+            } else {
+                setTextColor(Color.WHITE);
+                setShadowLayer((float) 0.01, -2, 2, Color.BLACK);
+
+            }
 //            setBackgroundColor(Color.argb(50, 255, 0, 0));
         } else {
-            setTextColor(Color.BLACK);
-            setShadowLayer(0,0,0,0);
+            if (isDay) {
+                setTextColor(Color.BLACK);
+                setShadowLayer(0,0,0,0);
+            } else {
+                setTextColor(Color.WHITE);
+                setShadowLayer((float) 0.01, -2, 2, Color.BLACK);
+            }
 //            setBackgroundColor(Color.argb(0, 0, 0, 0));
         }
     }

@@ -29,23 +29,25 @@ public class Food4ThoughtAppView extends LinearLayout implements Subscriber<Appl
     private SimpleRecipesView simpleRecipesView;
     private ApplicationModel applicationModel;
 
+    private boolean isDay;
+
+    public boolean getIsDay() {
+        return isDay;
+    }
 
     public Food4ThoughtAppView(Context context) {
         super(context);
         setOrientation(LinearLayout.VERTICAL);
 
-        Calendar c = Calendar.getInstance();
-        int hour = c.get(Calendar.HOUR_OF_DAY);
-        if (hour >= 7 && hour <= 17) {
-            setBackground(getResources().getDrawable(R.drawable.background_day));
-        } else {
-            setBackground(getResources().getDrawable(R.drawable.background_night));
-        }
+        setTimeBackground(); //sets isDay as well
 
-        ingredientsView = new IngredientsView(context);
+        ingredientsView = new IngredientsView(context, isDay);
         addView(ingredientsView);
         youCanMakeView = new TextView(context);
         Typeface myTypeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/Bariol_Regular.otf");
+        if (!isDay) {
+            youCanMakeView.setTextColor(Color.WHITE);
+        }
         youCanMakeView.setTypeface(myTypeface);
         youCanMakeView.setGravity(Gravity.CENTER);
         youCanMakeView.setText("You can make: ");
@@ -73,5 +75,18 @@ public class Food4ThoughtAppView extends LinearLayout implements Subscriber<Appl
     public void update(PublishCode code, ApplicationModel publisher) {
         ingredientsView.setSuggestedIngredients(publisher.getSuggestedIngredients());
         simpleRecipesView.setSuggestedRecipes(publisher.getSuggestedRecipes());
+    }
+
+    public void setTimeBackground() {
+
+        Calendar c = Calendar.getInstance();
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        if (hour >= 7 && hour <= 17) {
+            isDay = true;
+            setBackground(getResources().getDrawable(R.drawable.background_day));
+        } else {
+            isDay = false;
+            setBackground(getResources().getDrawable(R.drawable.background_night));
+        }
     }
 }

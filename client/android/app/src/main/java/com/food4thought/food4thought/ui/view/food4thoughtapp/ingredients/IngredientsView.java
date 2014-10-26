@@ -34,6 +34,22 @@ public class IngredientsView extends LinearLayout {
         addView(ingredientOptionsView);
     }
 
+    public IngredientsView(Context context, boolean isDay) {
+        super(context);
+        setOrientation(LinearLayout.VERTICAL);
+
+        friendlyTextView = new FriendlyTextView(context);
+        if (!isDay) {
+            friendlyTextView.setTextColor(Color.WHITE);
+        }
+        addView(friendlyTextView);
+        ingredientSearchView = new IngredientSearchView(context);
+//        ingredientSearchView.setGravity(Gravity.CENTER);
+        addView(ingredientSearchView);
+        ingredientOptionsView = new IngredientOptionsView(context, isDay);
+        addView(ingredientOptionsView);
+    }
+
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);

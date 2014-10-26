@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 
 import com.food4thought.api.FFTHandler;
@@ -25,10 +26,17 @@ public class AlpacaMaker extends Activity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         Food4ThoughtAppView view = new Food4ThoughtAppView(this);
+        view.setTimeBackground();
         setContentView(view);
         view.setApplicationModel(ApplicationModel.mainModel);
         ApplicationModel.mainModel.requestState();
 
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+      //  ((Food4ThoughtAppView) (getCurrentFocus())).setTimeBackground();
     }
 
     @Override
