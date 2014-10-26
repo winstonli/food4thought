@@ -3,7 +3,9 @@ package com.food4thought.food4thought.ui.view.food4thoughtrecipe;
 import android.content.Context;
 import android.graphics.Color;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.food4thought.food4thought.R;
 import com.food4thought.food4thought.ui.view.food4thoughtrecipe.recipeimage.RecipeImageView;
 import com.food4thought.food4thought.ui.view.food4thoughtrecipe.time.TimeView;
 
@@ -13,17 +15,19 @@ import com.food4thought.food4thought.ui.view.food4thoughtrecipe.time.TimeView;
 public class ImageAndTimeView extends LinearLayout {
 
     private RecipeImageView recipeImageView;
-    private TimeView timeView;
+    private TextView timeView;
 
     public ImageAndTimeView(Context context) {
         super(context);
         recipeImageView = new RecipeImageView(context);
-        timeView = new TimeView(context);
+        timeView = new TextView(context);
         setOrientation(VERTICAL);
         addView(recipeImageView);
         addView(timeView);
         recipeImageView.setBackgroundColor(Color.CYAN);
         timeView.setBackgroundColor(Color.RED);
+        recipeImageView.setImageDrawable(getResources().getDrawable(R.drawable.base));
+        timeView.setText("60 Minutes");
     }
 
     @Override

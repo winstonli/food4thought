@@ -11,5 +11,6 @@ public class TimeView extends LinearLayout {
     public TimeView(Context context) {
         super(context);
         setBackgroundColor(Color.LTGRAY);
+
     }
 }
