@@ -44,21 +44,7 @@ public class SimpleRecipesView extends LinearLayout implements Subscriber<Sugges
         s1 = new SimpleRecipeView(context, getResources().getDrawable(R.drawable.base));
         s2 = new SimpleRecipeView(context, getResources().getDrawable(R.drawable.base));
 
-        s1.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "s1", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getContext(), RecipeActivity.class);
-                getContext().startActivity(intent);
-            }
-        });
 
-        s2.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "s2", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         addView(s1);
         addView(s2);

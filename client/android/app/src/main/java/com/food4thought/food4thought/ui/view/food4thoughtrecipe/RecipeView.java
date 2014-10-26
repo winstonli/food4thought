@@ -5,6 +5,9 @@ import android.graphics.Color;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.food4thought.food4thought.model.Recipe;
+import com.food4thought.food4thought.model.pubsub.PublishCode;
+import com.food4thought.food4thought.model.pubsub.Subscriber;
 import com.food4thought.food4thought.ui.view.food4thoughtrecipe.recipeimage.RecipeImageView;
 import com.food4thought.food4thought.ui.view.food4thoughtrecipe.recipeingredients.RecipeIngredientsView;
 import com.food4thought.food4thought.ui.view.food4thoughtrecipe.recipeinstructions.RecipeInstructionsView;
@@ -13,7 +16,7 @@ import com.food4thought.food4thought.ui.view.food4thoughtrecipe.time.TimeView;
 /**
  * Created by Fiona on 25/10/2014.
  */
-public class RecipeView extends LinearLayout {
+public class RecipeView extends LinearLayout implements Subscriber<Recipe> {
 
     //private RecipeImageView recipeImageView;
     //private TimeView timeView;
@@ -21,6 +24,7 @@ public class RecipeView extends LinearLayout {
     //private RecipeIngredientsView recipeIngredientsView;
     private RecipeInstructionsView recipeInstructionsView;
     private RecipeProfileView recipeProfileView;
+    private Recipe recipe;
 
     public RecipeView(Context context) {
         super(context);
@@ -34,7 +38,6 @@ public class RecipeView extends LinearLayout {
         recipeIngredientsView = new RecipeIngredientsView(context);
         addView(recipeIngredientsView); */
         recipeNameView = new TextView(context);
-        recipeNameView.setText("Catbug Approved Jelly Kid Heads");
         recipeProfileView = new RecipeProfileView(context);
         recipeInstructionsView = new RecipeInstructionsView(context);
         addView(recipeNameView);
@@ -50,5 +53,17 @@ public class RecipeView extends LinearLayout {
         recipeInstructionsView.setLayoutParams(new LayoutParams(right, (int) (0.40 * bottom)));
     }
 
+    public void setRecipe(Recipe recipe) {
+        if (this.recipe != null) {
+            this.recipe.publisher.unsubscribe(this);
+        }
+        this.recipe = recipe;
+        recipe.publisher.subscribe(this);
+    }
 
+    @Override
+    public void update(PublishCode code, Recipe publisher) {
+        recipeNameView.setText(publisher.getName());
+
+    }
 }

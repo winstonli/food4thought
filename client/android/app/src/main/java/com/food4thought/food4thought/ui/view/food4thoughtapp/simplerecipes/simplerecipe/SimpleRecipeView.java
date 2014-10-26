@@ -1,18 +1,22 @@
 package com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.simplerecipe;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.food4thought.food4thought.R;
+import com.food4thought.food4thought.RecipeActivity;
 import com.food4thought.food4thought.model.Recipe;
 import com.food4thought.food4thought.model.pubsub.PublishCode;
 import com.food4thought.food4thought.model.pubsub.Subscriber;
@@ -26,6 +30,7 @@ import com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.simpl
  */
 public class SimpleRecipeView extends RelativeLayout implements Subscriber<Recipe> {
 
+    public static final String RECIPE_ID = "RECIPE_ID";
     private ImageView simpleRecipeImageView;
     private TimeIndicatorView timeIndicatorView;
     private IngredientNumberView ingredientNumberView;
@@ -58,6 +63,15 @@ public class SimpleRecipeView extends RelativeLayout implements Subscriber<Recip
         addView(simpleRecipeNameView);
         //setBackground(getResources().getDrawable(R.drawable.base));
         //setText("Fried Alpaca Dumplings");
+        setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), recipe.getName(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), RecipeActivity.class);
+                intent.putExtra(RECIPE_ID, recipe.getID());
+                getContext().startActivity(intent);
+            }
+        });
 
     }
 

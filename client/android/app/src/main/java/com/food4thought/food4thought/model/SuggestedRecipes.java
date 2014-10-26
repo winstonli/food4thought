@@ -10,16 +10,20 @@ public class SuggestedRecipes implements JSONSource {
 
     public Publisher<SuggestedRecipes> publisher;
 
-    private JSONSourceList<Recipe> recipes;
+    private JSONSourceMap<Integer, Recipe> recipes;
 
     public SuggestedRecipes() {
         publisher = new Publisher<SuggestedRecipes>(this);
-        recipes = new JSONSourceList<Recipe>();
-        recipes.add(new Recipe());
-        recipes.add(new Recipe());
+        recipes = new JSONSourceMap<Integer, Recipe>();
+        Recipe recipe1 = new Recipe();
+        recipe1.id = 0;
+        recipes.put(0, recipe1);
+        Recipe recipe2 = new Recipe();
+        recipe2.id = 1;
+        recipes.put(1, recipe2);
     }
 
-    public JSONSourceList<Recipe> getRecipes() {
+    public JSONSourceMap<Integer, Recipe> getRecipes() {
         return recipes;
     }
 

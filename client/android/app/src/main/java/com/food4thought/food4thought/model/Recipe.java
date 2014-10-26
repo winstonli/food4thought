@@ -31,9 +31,11 @@ public class Recipe implements JSONSource {
 
     private boolean selected;
 
+    int id;
     private String name;
     private JSONSourceList<Ingredient> ingredients;
     private String description;
+    private int time;
 
     public Recipe() {
         publisher = new Publisher<Recipe>(this);
@@ -46,14 +48,18 @@ public class Recipe implements JSONSource {
 
     @Override
     public void updateFromJSON() {
-        Log.wtf("miaow", "update recipe from json");
         name = names[(int) (names.length * Math.random())];
         ingredients.updateFromJSON();
         description = "Put Fried alpaca in poo";
         publisher.publishWithCode(PublishCode.RECIPE_UPDATED);
+        time = 60;
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getID() {
+        return id;
     }
 }
