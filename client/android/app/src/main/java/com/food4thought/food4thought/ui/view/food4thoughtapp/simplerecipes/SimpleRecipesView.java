@@ -65,12 +65,16 @@ public class SimpleRecipesView extends LinearLayout implements Subscriber<Sugges
 
     @Override
     public void update(PublishCode code, SuggestedRecipes publisher) {
-//        Recipe recipe1 = publisher.getRecipes().get(0);
-//        recipe1.publisher.unsubscribe(s1);
-//        s1.setRecipe(recipe1);
-//
-//        Recipe recipe2 = publisher.getRecipes().get(1);
-//        recipe2.publisher.unsubscribe(s2);
-//        s2.setRecipe(recipe2);
+        Recipe recipe1 = publisher.getRecipes().get(0);
+        if (recipe1 != null) {
+            recipe1.publisher.unsubscribe(s1);
+            s1.setRecipe(recipe1);
+        }
+
+        Recipe recipe2 = publisher.getRecipes().get(1);
+        if (recipe2 != null) {
+            recipe2.publisher.unsubscribe(s2);
+            s2.setRecipe(recipe2);
+        }
     }
 }

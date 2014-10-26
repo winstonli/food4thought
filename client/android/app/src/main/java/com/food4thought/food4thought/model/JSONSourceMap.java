@@ -1,5 +1,6 @@
 package com.food4thought.food4thought.model;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 
 import java.util.ArrayList;
@@ -12,8 +13,11 @@ public class JSONSourceMap<K, V extends JSONSource> extends HashMap<K, V> implem
 
     @Override
     public void updateFromJSON(JsonElement json) {
+        JsonArray jsonArray = (JsonArray) json;
+        int i = 0;
         for (Entry<K, V> t : this.entrySet()) {
-            t.getValue().updateFromJSON(json);
+            t.getValue().updateFromJSON(jsonArray.get(i));
+            i++;
         }
     }
 

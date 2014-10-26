@@ -5,6 +5,7 @@ import android.util.Log;
 import com.food4thought.food4thought.model.pubsub.PublishCode;
 import com.food4thought.food4thought.model.pubsub.Publisher;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,11 +62,13 @@ public class Recipe implements JSONSource {
 
     @Override
     public void updateFromJSON(JsonElement json) {
-        name = names[(int) (names.length * Math.random())];
+        JsonObject jsonObject = (JsonObject) json;
+        id = jsonObject.get("id").getAsInt();
+        name = jsonObject.get("name").getAsString();
         ingredients.updateFromJSON(json);
-        description = "Put Fried alpaca in poo";
+        description = jsonObject.get("description").getAsString();
         publisher.publishWithCode(PublishCode.RECIPE_UPDATED);
-        time = 60;
+        time = jsonObject.get("time").getAsInt();
     }
 
     public String getName() {

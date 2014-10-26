@@ -49,6 +49,7 @@ public class ApplicationModel implements JSONSource {
         FoodForThoughtAPI.getState(new FFTHandler() {
             @Override
             public void jsonReceived(JsonElement json) {
+                Log.wtf("miaow", "update from json");
                 updateFromJSON(json);
             }
 
