@@ -36,7 +36,7 @@ public class IngredientOptionView extends Button implements Subscriber<Ingredien
             @Override
             public void onClick(View view) {
                 ingredient.invertSelected();
-                Toast.makeText(getContext(), ingredient.getName(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(getContext(), ingredient.getName(), Toast.LENGTH_LONG).show();
 
             }
         });
@@ -51,9 +51,13 @@ public class IngredientOptionView extends Button implements Subscriber<Ingredien
     public void update(PublishCode code, Ingredient publisher) {
         setText(publisher.getName());
         if (publisher.isSelected()) {
-            setBackgroundColor(Color.argb(50, 255, 0, 0));
+            setTextColor(Color.WHITE);
+            setShadowLayer((float) 0.01, -2, 2, Color.BLACK);
+//            setBackgroundColor(Color.argb(50, 255, 0, 0));
         } else {
-            setBackgroundColor(Color.argb(0, 0, 0, 0));
+            setTextColor(Color.BLACK);
+            setShadowLayer(0,0,0,0);
+//            setBackgroundColor(Color.argb(0, 0, 0, 0));
         }
     }
 

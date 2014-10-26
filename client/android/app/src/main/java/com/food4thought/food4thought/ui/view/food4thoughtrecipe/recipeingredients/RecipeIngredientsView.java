@@ -24,7 +24,6 @@ public class RecipeIngredientsView extends LinearLayout {
         super(context);
 
         setOrientation(VERTICAL);
-        setBackgroundColor(Color.DKGRAY);
         scroll = new ScrollView(context);
         ll = new LinearLayout(context);
         ll.setOrientation(VERTICAL);
