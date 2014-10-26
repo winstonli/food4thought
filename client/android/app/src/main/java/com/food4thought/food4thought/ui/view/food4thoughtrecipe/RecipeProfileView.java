@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.food4thought.food4thought.model.Ingredient;
+import com.food4thought.food4thought.model.JSONSourceList;
 import com.food4thought.food4thought.ui.view.food4thoughtrecipe.recipeimage.RecipeImageView;
 import com.food4thought.food4thought.ui.view.food4thoughtrecipe.recipeingredients.RecipeIngredientsView;
 
@@ -30,6 +32,12 @@ public class RecipeProfileView extends LinearLayout {
         imageAndTimeView.setLayoutParams(new LayoutParams((int) (0.50 * right), bottom));
         recipeIngredientsView.setLayoutParams(new LayoutParams((int) (0.50 * right), bottom));
 
+    }
+
+    protected void setData(String imgURL, int time, JSONSourceList<Ingredient> ingredients) {
+        //set url
+        imageAndTimeView.setTimeView(time);
+        recipeIngredientsView.setIngredients(ingredients);
     }
 
 }

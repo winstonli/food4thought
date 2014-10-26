@@ -14,6 +14,10 @@ public class RecipeInstructionsView extends ScrollView {
 
     private TextView text;
 
+    public void setInstructions(String instructions) {
+        text.setText(instructions);
+    }
+
     public RecipeInstructionsView(Context context) {
         super(context);
         setBackgroundColor(Color.WHITE);

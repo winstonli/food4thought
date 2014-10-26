@@ -33,8 +33,23 @@ public class Recipe implements JSONSource {
 
     int id;
     private String name;
+
+    public JSONSourceList<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
     private JSONSourceList<Ingredient> ingredients;
+
+    public String getDescription() {
+        return description;
+    }
+
     private String description;
+
+    public int getTime() {
+        return time;
+    }
+
     private int time;
 
     public Recipe() {

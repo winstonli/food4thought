@@ -38,5 +38,11 @@ public class ImageAndTimeView extends LinearLayout {
 
     }
 
+    public void setRecipeImageView(String imgURL) {
 
+    }
+
+    public void setTimeView(int time) {
+        timeView.setText(time + " minutes");
+    }
 }

@@ -57,13 +57,18 @@ public class RecipeView extends LinearLayout implements Subscriber<Recipe> {
         if (this.recipe != null) {
             this.recipe.publisher.unsubscribe(this);
         }
+
         this.recipe = recipe;
-        recipe.publisher.subscribe(this);
+        if (this.recipe != null) {
+            recipe.publisher.subscribe(this);
+        }
     }
 
     @Override
     public void update(PublishCode code, Recipe publisher) {
         recipeNameView.setText(publisher.getName());
+        recipeInstructionsView.setInstructions(publisher.getDescription());
+        recipeProfileView.setData("imageURL", publisher.getTime(), publisher.getIngredients());
 
     }
 }
