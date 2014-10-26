@@ -1,9 +1,14 @@
 package com.food4thought.food4thought.model;
 
+import android.util.Log;
+
 import com.food4thought.food4thought.model.pubsub.PublishCode;
 import com.food4thought.food4thought.model.pubsub.Publisher;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -18,22 +23,29 @@ public class SuggestedIngredients implements JSONSource {
     public SuggestedIngredients() {
         publisher = new Publisher<SuggestedIngredients>(this);
         ingredients = new JSONSourceList<Ingredient>();
-        ingredients.add(new Ingredient());
-        ingredients.add(new Ingredient());
-        ingredients.add(new Ingredient());
-        ingredients.add(new Ingredient());
-        ingredients.add(new Ingredient());
-        ingredients.add(new Ingredient());
-        ingredients.add(new Ingredient());
     }
 
     public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
+    public List<Integer> getIDs() {
+        List<Integer> ids = new LinkedList<Integer>();
+        for (Ingredient ingredient : ingredients) {
+            if (ingredient.isSelected()) {
+                ids.add(ingredient.getId());
+            }
+        }
+        return ids;
+    }
+
     @Override
-    public void updateFromJSON() {
-        ingredients.updateFromJSON();
+    public void updateFromJSON(JsonElement json) {
+        ingredients = new JSONSourceList<Ingredient>();
+        for (int i = 0; i < ((JsonArray) json).size(); i++) {
+            ingredients.add(new Ingredient());
+        }
+        ingredients.updateFromJSON(json);
         publisher.publishWithCode(PublishCode.SUGGESTED_INGREDIENTS_UPDATED);
     }
 

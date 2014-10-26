@@ -8,6 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 public class AsyncExample extends AsyncTask<Void, Void, String> {
   

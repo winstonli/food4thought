@@ -1,7 +1,12 @@
 package com.food4thought.food4thought.model;
 
+import android.util.Log;
+
 import com.food4thought.food4thought.model.pubsub.PublishCode;
 import com.food4thought.food4thought.model.pubsub.Publisher;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 /**
  * Created by Roxy on 25/10/14.
@@ -15,12 +20,6 @@ public class SuggestedRecipes implements JSONSource {
     public SuggestedRecipes() {
         publisher = new Publisher<SuggestedRecipes>(this);
         recipes = new JSONSourceMap<Integer, Recipe>();
-        Recipe recipe1 = new Recipe();
-        recipe1.id = 0;
-        recipes.put(0, recipe1);
-        Recipe recipe2 = new Recipe();
-        recipe2.id = 1;
-        recipes.put(1, recipe2);
     }
 
     public JSONSourceMap<Integer, Recipe> getRecipes() {
@@ -28,8 +27,15 @@ public class SuggestedRecipes implements JSONSource {
     }
 
     @Override
-    public void updateFromJSON() {
-        recipes.updateFromJSON();
+    public void updateFromJSON(JsonElement json) {
+        Log.wtf("mioaw", json.toString());
+        recipes = new JSONSourceMap<Integer, Recipe>();
+        JsonArray jsonArray = (JsonArray) json;
+        Log.wtf("miaow", "recipes: " + jsonArray.toString());
+        for (int i = 0; i < jsonArray.size(); i++) {
+            recipes.put(((JsonObject) jsonArray.get(i)).get("id").getAsInt(), new Recipe());
+        }
+        recipes.updateFromJSON(json);
         publisher.publishWithCode(PublishCode.SUGGESTED_RECIPES_UPDATED);
     }
 

@@ -2,6 +2,8 @@ package com.food4thought.food4thought.model;
 
 import com.food4thought.food4thought.model.pubsub.PublishCode;
 import com.food4thought.food4thought.model.pubsub.Publisher;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 /**
  * Created by Roxy on 25/10/14.
@@ -35,9 +37,10 @@ public class Ingredient implements JSONSource {
     }
 
     @Override
-    public void updateFromJSON() {
-        id = (int) (500 * Math.random());
-        name = names[(int) (names.length * Math.random())];
+    public void updateFromJSON(JsonElement json) {
+        JsonObject jsonObject = (JsonObject) json;
+        id = jsonObject.get("id").getAsInt();
+        name = jsonObject.get("name").getAsString();
         publisher.publishWithCode(PublishCode.INGREDIENT_UPDATED);
     }
 
