@@ -46,4 +46,17 @@ public class Ingredient implements JSONSource {
     }
 
     public int getId() {return id; }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+        publisher.publishWithCode(PublishCode.INGREDIENT_SELECTED_UPDATED);
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void invertSelected() {
+        setSelected(!selected);
+    }
 }
