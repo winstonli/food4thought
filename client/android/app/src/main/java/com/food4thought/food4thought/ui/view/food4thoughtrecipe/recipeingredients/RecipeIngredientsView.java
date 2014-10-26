@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
+import com.food4thought.food4thought.model.Ingredient;
+import com.food4thought.food4thought.model.JSONSourceList;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.ingredientoptions.ingredientoption.IngredientOptionView;
 import com.food4thought.food4thought.ui.view.food4thoughtrecipe.recipeingredients.recipeingredient.RecipeIngredientView;
 
@@ -22,7 +24,6 @@ public class RecipeIngredientsView extends LinearLayout {
         super(context);
 
         setOrientation(VERTICAL);
-        setBackgroundColor(Color.DKGRAY);
         scroll = new ScrollView(context);
         ll = new LinearLayout(context);
         ll.setOrientation(VERTICAL);
@@ -42,4 +43,9 @@ public class RecipeIngredientsView extends LinearLayout {
         //recipeIngredientView.setLayoutParams(new LayoutParams(right, (int) (1 * bottom)));
     }
 
+    public void setIngredients(JSONSourceList<Ingredient> ingredients) {
+        for(Ingredient i: ingredients) {
+            ll.addView(new RecipeIngredientView(getContext(), i.getName()));
+        }
+    }
 }

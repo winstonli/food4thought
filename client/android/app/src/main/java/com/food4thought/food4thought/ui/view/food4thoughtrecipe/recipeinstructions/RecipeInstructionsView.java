@@ -2,6 +2,8 @@ package com.food4thought.food4thought.ui.view.food4thoughtrecipe.recipeinstructi
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.util.TypedValue;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -14,10 +16,16 @@ public class RecipeInstructionsView extends ScrollView {
 
     private TextView text;
 
+    public void setInstructions(String instructions) {
+        text.setText(instructions);
+    }
+
     public RecipeInstructionsView(Context context) {
         super(context);
-        setBackgroundColor(Color.WHITE);
         text = new TextView(context);
+        Typeface myTypeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/Bariol_Regular.otf");
+        text.setTypeface(myTypeface);
+        text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
         text.setText("cvvvvvvng I'm already insane I wonder whether anyone will ever read this I'm not sure if you've gotten this far you're so weirvvvvvvng I'm already insane I wonder whether anyone will ever read this I'm not sure if you've gotten this far you're so weirvvvvvvng I'm already insane I wonder whether anyone will ever read this I'm not sure if you've gotten this far you're so weirvvvvvvng I'm already insane I wonder whether anyone will ever read this I'm not sure if you've gotten this far you're so weirvvvvvvng I'm already insane I wonder whether anyone will ever read this I'm not sure if you've gotten this far you're so weirvvvvvvng I'm already insane I wonder whether anyone will ever read this I'm not sure if you've gotten this far you're so weirvvvvvvng I'm already insane I wonder whether anyone will ever read this I'm not sure if you've gotten this far you're so weirvvvvvvng I'm already insane I wonder whether anyone will ever read this I'm not sure if you've gotten this far you're so weirvvvvvvng I'm already insane I wonder whether anyone will ever read this I'm not sure if you've gotten this far you're so weirvvvvvvng I'm already insane I wonder whether anyone will ever read this I'm not sure if you've gotten this far you're so weirvvvvvvng I'm already insane I wonder whether anyone will ever read this I'm not sure if you've gotten this far you're so weird");
         addView(text);
     }

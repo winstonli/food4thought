@@ -66,7 +66,7 @@ public class SimpleRecipeView extends RelativeLayout implements Subscriber<Recip
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), recipe.getName(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), recipe.getName(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getContext(), RecipeActivity.class);
                 intent.putExtra(RECIPE_ID, recipe.getID());
                 getContext().startActivity(intent);

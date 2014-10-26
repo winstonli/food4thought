@@ -2,9 +2,13 @@ package com.food4thought.food4thought.ui.view.food4thoughtrecipe;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.food4thought.food4thought.R;
 import com.food4thought.food4thought.model.Recipe;
 import com.food4thought.food4thought.model.pubsub.PublishCode;
 import com.food4thought.food4thought.model.pubsub.Subscriber;
@@ -29,7 +33,7 @@ public class RecipeView extends LinearLayout implements Subscriber<Recipe> {
     public RecipeView(Context context) {
         super(context);
         setOrientation(VERTICAL);
-        setBackgroundColor(Color.MAGENTA);
+        setBackground(getResources().getDrawable(R.drawable.background_recipe_day));
 
         /*recipeImageView = new RecipeImageView(context);
         addView(recipeImageView);
@@ -38,8 +42,14 @@ public class RecipeView extends LinearLayout implements Subscriber<Recipe> {
         recipeIngredientsView = new RecipeIngredientsView(context);
         addView(recipeIngredientsView); */
         recipeNameView = new TextView(context);
+        Typeface myTypeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/Bariol_Regular.otf");
+        recipeNameView.setTypeface(myTypeface);
+        recipeNameView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
+        recipeNameView.setPadding(90, 20, 10, 10);
         recipeProfileView = new RecipeProfileView(context);
         recipeInstructionsView = new RecipeInstructionsView(context);
+        recipeInstructionsView.setPadding(90, 10, 10, 10);
+
         addView(recipeNameView);
         addView(recipeProfileView);
         addView(recipeInstructionsView);
@@ -57,13 +67,18 @@ public class RecipeView extends LinearLayout implements Subscriber<Recipe> {
         if (this.recipe != null) {
             this.recipe.publisher.unsubscribe(this);
         }
+
         this.recipe = recipe;
-        recipe.publisher.subscribe(this);
+        if (this.recipe != null) {
+            recipe.publisher.subscribe(this);
+        }
     }
 
     @Override
     public void update(PublishCode code, Recipe publisher) {
         recipeNameView.setText(publisher.getName());
+        recipeInstructionsView.setInstructions(publisher.getDescription());
+        recipeProfileView.setData("imageURL", publisher.getTime(), publisher.getIngredients());
 
     }
 }
