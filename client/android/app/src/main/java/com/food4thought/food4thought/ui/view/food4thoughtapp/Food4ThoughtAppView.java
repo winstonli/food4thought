@@ -3,6 +3,7 @@ package com.food4thought.food4thought.ui.view.food4thoughtapp;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.text.format.Time;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import com.food4thought.food4thought.model.pubsub.PublishCode;
 import com.food4thought.food4thought.model.pubsub.Subscriber;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.ingredients.IngredientsView;
 import com.food4thought.food4thought.ui.view.food4thoughtapp.simplerecipes.SimpleRecipesView;
+
+import java.util.Calendar;
 
 /**
  * Created by Roxy on 25/10/14.
@@ -30,8 +33,14 @@ public class Food4ThoughtAppView extends LinearLayout implements Subscriber<Appl
     public Food4ThoughtAppView(Context context) {
         super(context);
         setOrientation(LinearLayout.VERTICAL);
-        setBackground(getResources().getDrawable(R.drawable.background_day));
-//        setBackground(getResources().getDrawable(R.drawable.background_night));
+
+        Calendar c = Calendar.getInstance();
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        if (hour >= 7 && hour <= 17) {
+            setBackground(getResources().getDrawable(R.drawable.background_day));
+        } else {
+            setBackground(getResources().getDrawable(R.drawable.background_night));
+        }
 
         ingredientsView = new IngredientsView(context);
         addView(ingredientsView);
